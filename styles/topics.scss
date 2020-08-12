@@ -1,0 +1,32 @@
+@import "vars";
+
+.topicsText {
+  padding-top: 23px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  border-bottom: 3px solid $gray-8;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.topicsWrapper {
+  border-right: 1px solid $gray-6;
+  padding-right: 10px;
+  height: 100vh;
+
+  .topic {
+    padding: 10px 2px;
+    font-size: 26px;
+    cursor: pointer;
+  }
+  .topic:hover {
+    background-color: $gray-8;
+  }
+  .topic.selected {
+    background-color: $gray-7;
+  }
+  .topic.selected:hover {
+    background-color: $gray-8;
+  }
+}

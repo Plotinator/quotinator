@@ -1,0 +1,40 @@
+@import "vars";
+
+.gridWrapper {
+  display: flex;
+  padding-left: 20px;
+
+  .rightSideWrapper {
+    // flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .categoriesWrapper {
+    display: flex;
+    // border-bottom: 1px solid $gray-6;
+    background-color: $gray-8;
+    // flex-grow: 1;
+
+    .category {
+      padding: 10px 20px;
+      font-size: 26px;
+      cursor: pointer;
+    }
+    .category:hover {
+      background-color: $gray-7;
+    }
+    .category.selected {
+      background-color: $gray-9;
+    }
+  }
+
+  .grid {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+}

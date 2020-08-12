@@ -1,0 +1,65 @@
+@import "vars";
+
+.card {
+  height: 136px;
+  width: 220px;
+  margin: 10px;
+  // padding: 10px;
+  box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
+
+  // border: 3px solid $green-6;
+  // border: 1px solid $green-2;
+  // border-radius: 1px;
+
+  overflow: hidden;
+
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  cursor: pointer;
+
+  .card-header {
+    // display: flex;
+    // justify-content: flex-end;
+  }
+
+}
+.card.addButton {
+  @extend .card;
+  border: none;
+  box-shadow: none;
+  align-items: center;
+  justify-content: center;
+
+  .circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    background-color: $blue-6;
+    color: white;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.6 $cubic;
+
+    .glyphicon {
+      margin-left: 3px;
+      margin-bottom: 3px;
+    }
+  }
+}
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+.card.addButton:hover {
+  border: 3px dashed $gray-8;
+
+  .circle {
+    background-color: $blue-5;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+}
