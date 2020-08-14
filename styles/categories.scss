@@ -1,0 +1,32 @@
+@import "vars";
+
+.categoriesWrapper {
+  display: flex;
+  align-items: center;
+  // border-bottom: 1px solid $gray-6;
+  background-color: $gray-8;
+  // flex-grow: 1;
+
+  &.secondRow {
+    background-color: $gray-7;
+  }
+
+  .category {
+    padding: 10px 20px;
+    // font-size: 26px;
+    font-size: calc(16px + 0.25vw);
+    line-height: calc(1.1em + 0.25vw);
+    cursor: pointer;
+  }
+  .category:hover {
+    background-color: $gray-9;
+  }
+  .category.selected {
+    background-color: $gray-7;
+  }
+
+  .searchInput {
+    margin-left: auto;
+    margin-right: 5px;
+  }
+}

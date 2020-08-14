@@ -43,7 +43,7 @@ class GridView extends Component {
       </div>
       <div className='rightSideWrapper'>
         <div className='categoriesWrapper'>{this.renderCategories()}</div>
-        <div className='grid'>
+        <div className='cardGrid'>
           {this.renderAddButton()}
           {this.renderCards()}
         </div>

@@ -1,24 +1,27 @@
 // data structure
 
-export const newFileState = {
-  byId: {},
-  allIds: []
-}
+// quotes
+// authors
+// topics
+// works
+// workTypes
+// users
+// characters
 
 export const initialQuote = {
   id: "",
   text: "",
   favorite: false,
   authorId: "",
-  seriesId: "",
-  bookId: "",
+  workId: "",
   characterId: "",
-  eventId: "",
   topicIds: [],
-  pageNumber: null,
-  chapter: null,
-  verse: null,
+  pageNumber: null, // ?
+  chapter: null,  // ?
+  verse: null,  // ?
   notes: "",
+  dateAdded: 0,
+  lastEdited: 0,
 }
 
 export const initialTopic = {
@@ -29,47 +32,19 @@ export const initialTopic = {
 
 export const initialAuthor = {
   name: "",
-  seriesIds: [],
-  bookIds: [],
 }
 
-export const initialSeries = {
+export const initialWork = {
   name: "",
-  authorId: "a1",
-  bookIds: [],
+  authorId: "",
 }
 
-export const initialBook = {
+export const initialWorkType = {
   name: "",
-  authorId: "a1",
-  characterIds: [],
 }
 
 export const initialCharacter = {
   name: "",
-  bookId: "b1",
-}
-
-export const initialEvent = {
-  name: "",
-  time: new Date(),
-  place: "",
-  authorIds: [],
-  speechIds: []
-}
-
-export const initialSpeech = {
-  id: "",
-  name: "",
-  time: null,
-  place: "",
-  authorId: ""
-}
-
-export const initialFile = {
-  fileName: '',
-  loaded: false,
-  dirty: false
 }
 
 export const initialUI = {
