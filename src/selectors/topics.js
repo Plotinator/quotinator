@@ -1,7 +1,9 @@
-export function selectTopicIds (state) {
-  return state.entities.topics.allIds
-}
+import { createSelector } from 'reselect'
+import { keyBy } from 'lodash'
 
-export function selectAllTopics (state) {
-  return state.entities.topics.byId
-}
+const selectAllTopics = data => data
+
+export const topicsByIdSelector = createSelector(
+  selectAllTopics,
+  (topics) => keyBy(topics, 'id')
+)

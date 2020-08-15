@@ -9,42 +9,48 @@
 // characters
 
 export const initialQuote = {
-  id: "",
-  text: "",
+  userId: '',
+  text: '',
   favorite: false,
-  authorId: "",
-  workId: "",
-  characterId: "",
+  authorId: '',
+  workId: '',
+  characterId: '',
   topicIds: [],
   pageNumber: null, // ?
   chapter: null,  // ?
   verse: null,  // ?
-  notes: "",
+  notes: '',
   dateAdded: 0,
   lastEdited: 0,
 }
 
 export const initialTopic = {
-  id: "",
-  color: "",
-  name: ""
+  userId: '',
+  color: '',
+  name: '',
+  position: 0,
 }
 
 export const initialAuthor = {
-  name: "",
+  userId: '',
+  name: '',
 }
 
 export const initialWork = {
-  name: "",
-  authorId: "",
+  userId: '',
+  name: '',
+  authorId: '',
 }
 
 export const initialWorkType = {
-  name: "",
+  userId: '',
+  name: '',
+  position: 0,
 }
 
 export const initialCharacter = {
-  name: "",
+  userId: '',
+  name: '',
 }
 
 export const initialUI = {

@@ -11,7 +11,6 @@
   to { opacity: 1; }
 }
 
-// Give everything in 'yield' margin to separate it.
 #quotr-root {
   margin: 0px 0px 0px 0px;
   animation: fadein 1.5s;
@@ -19,48 +18,27 @@
 
 body {
   @include body-text-font;
-}
-
-body.darkmode {
-  background-color: #777;
+  overscroll-behavior: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
   @include header-font;
 }
 
-.secondary-text {
-  @include secondary-text;
-}
-
-.secondary-text.darkmode {
-  color: $secondary-text-darkmode;
-}
-
-.disabled-text {
-  @include disabled-text;
-}
-
-.accented-text {
-  @include accented-text;
-}
-
-.sub-header {
-  @extend .secondary-text;
-  font-size: 16pt;
-  margin-bottom: 20px;
-}
-
-.glyphicon {
-  // vertical-align: baseline;
-}
-
-.glyphicon-ok {
-  vertical-align: baseline;
-}
-
 .btn {
   @include application-text;
 }
 
-
+.brandBanner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $gray-8;
+  h1 {
+    font-size: calc(2rem + 0.75vw);
+    line-height: calc(2rem + 0.75vw);
+    font-family: 'Pacifico', cursive !important;
+    margin-bottom: 9px;
+  }
+}

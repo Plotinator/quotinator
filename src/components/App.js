@@ -1,5 +1,6 @@
-import { Grid, Column, Row } from './grid/SpectreGrid'
-import Table from './grid/Table'
+import { Grid, Column, Row } from './spectre/Grid'
+import Main from './Main'
+import CategoriesWrapper from './categories/CategoriesWrapper'
 
 export default function App (props) {
 
@@ -7,54 +8,16 @@ export default function App (props) {
     <nav>
       <Grid>
         <Row>
-          <Column size={2}>Quotr</Column>
-          <Column size={10}>
-            <div className='categoriesWrapper'>
-              <div className='category'>Favorites</div>
-              <div className='category'>Authors</div>
-              <div className='category selected'>Works</div>
-              <div className='category'>Characters</div>
-              <div className='category'>Uncategorized</div>
-              <div className='searchInput'><input placeholder='Search'/></div>
-            </div>
-            <div className='categoriesWrapper secondRow'>
-              <div className='category'>Book</div>
-              <div className='category'>Speech</div>
-              <div className='category'>Poem</div>
-              <div className='category'>Event</div>
+          <Column size={2}>
+            <div className='brandBanner'>
+              <h1>Quotr</h1>
             </div>
           </Column>
+          <CategoriesWrapper/>
         </Row>
       </Grid>
     </nav>
-    <main>
-      <Table/>
-    </main>
+    <Main/>
     <footer></footer>
   </div>
-
-
-
-  return <Grid>
-    <Row>
-      <Column size={2}>Quotr</Column>
-      <Column size={10}>
-        <div className='categoriesWrapper'>
-          <div className='category'>Favorites</div>
-          <div className='category'>Authors</div>
-          <div className='category selected'>Works</div>
-          <div className='category'>Characters</div>
-          <div className='category'>Uncategorized</div>
-          <div className='searchInput'><input placeholder='Search'/></div>
-        </div>
-        <div className='categoriesWrapper secondRow'>
-          <div className='category'>Book</div>
-          <div className='category'>Speech</div>
-          <div className='category'>Poem</div>
-          <div className='category'>Event</div>
-        </div>
-      </Column>
-    </Row>
-    <Table/>
-  </Grid>
 }
