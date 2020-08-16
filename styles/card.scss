@@ -23,30 +23,55 @@
   overflow: hidden;
   cursor: pointer;
 
-  .card-header {
-  }
-
   .card-body {
     height: 100%;
     overflow-y: auto;
     .favorite-star {
       float: left;
+      shape-outside: circle(40%);
       margin-right: 25px;
+      margin-bottom: 5px;
       height: 1.6em;
       width: 1.6em;
-
       transition: all .3s $cubic;
 
       &:hover {
         height: 2em;
         width: 2em;
-        color: $gray-6;
+        color: $yellow-6;
       }
+    }
+
+    .quote-text {
+      @include header-font;
+      quotes: "“" "”" "‘" "’";
+      line-height: calc(1.3rem + 0.1vw);
+      font-size: calc(16px + 0.1vw);
+    }
+    .quote-text::before {
+      content: open-quote;
+      @include header-font;
+      font-size: 30px;
+      color: $gray-7;
+      vertical-align: middle;
+      margin-right: 2px;
+    }
+    .quote-text::after {
+      content: close-quote;
+      @include header-font;
+      font-size: 30px;
+      color: $gray-7;
+      vertical-align: middle;
+      margin-left: 2px;
     }
   }
 
   .card-footer {
     background-color: $gray-9;
+    .quote-author {
+      @include header-font;
+      text-align: right;
+    }
   }
 }
 .card.addButton {

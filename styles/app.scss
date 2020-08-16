@@ -25,10 +25,6 @@ h1, h2, h3, h4, h5, h6 {
   @include header-font;
 }
 
-.btn {
-  @include application-text;
-}
-
 .brandBanner {
   height: 100%;
   display: flex;

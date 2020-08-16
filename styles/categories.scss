@@ -10,6 +10,7 @@
   }
 
   .category {
+    @include header-font;
     padding: 10px 20px;
     // font-size: 26px;
     font-size: calc(16px + 0.25vw);
@@ -26,5 +27,10 @@
   .searchInput {
     margin-left: auto;
     margin-right: 5px;
+    button {
+      background-color: $blue-6;
+      border-color: $blue-6;
+      color: white;
+    }
   }
 }

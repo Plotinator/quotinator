@@ -14,7 +14,7 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Quotr</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;700&family=Open+Sans:wght@400;700&family=Pacifico&display=swap" rel="stylesheet" />
       </Head>
 
       <FuegoProvider fuego={fuego}>
