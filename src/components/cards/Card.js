@@ -1,34 +1,35 @@
+import { useState } from 'react'
 import { IoIosStarOutline } from 'react-icons/io'
-import { useCollection } from '@nandorojo/swr-firestore'
-import hardCodedUserId from '../../store/hardCodedUserId'
-import { topicsByIdSelector } from '../../selectors/topics'
-import { authorsByIdSelector } from '../../selectors/authors'
 import { Column } from '../spectre/Grid'
 import TopicChip from '../topics/TopicChip'
-import { Modal } from '../spectre/Modal'
-import { useState } from 'react'
 import CardModal from './CardModal'
+import { useAuthor } from '../../hooks/authors'
+import { useTopicsById } from '../../hooks/topics'
 
 export default function Card (props) {
-  const [open, setOpen] = useState(false)
-  const { data: topics } = useCollection('topics', {where: ['userId', '==', hardCodedUserId]})
-  const { data: authors } = useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
   const quote = props.quote
+  const [open, setOpen] = useState(false)
+  const topicsById = useTopicsById()
+  const author = useAuthor(quote.authorId)
 
   // TODO: handle pressing esc to close modal
   // TODO: probably move modal to <Main/> once I add Recoil so it can be a global thing
 
+  const toggleFavorite = e => {
+    e.stopPropagation()
+
+
+  }
+
   const renderTopics = () => {
-    if (topics && quote.topicIds?.length) {
-      const topicsById = topicsByIdSelector(topics)
+    if (topicsById && quote.topicIds?.length) {
       return quote.topicIds.map(id => <TopicChip key={id} topic={topicsById[id]} />)
     } else return null
   }
 
   const renderAuthor = () => {
-    if (authors && quote.authorId) {
-      const authorsById = authorsByIdSelector(authors)
-      return <div className='quote-author'>{'—'}{authorsById[quote.authorId].name}</div>
+    if (author) {
+      return <div className='quote-author'>{'—'}{author.name}</div>
     } else return null
   }
 
@@ -36,7 +37,7 @@ export default function Card (props) {
     <CardModal open={open} quote={quote} onClose={() => setOpen(false)}/>
     <div className='card' onClick={() => setOpen(true)}>
       <div className='card-body'>
-        <IoIosStarOutline className='favorite-star'/>
+        <IoIosStarOutline className='favorite-star' onClick={toggleFavorite}/>
         <q className='quote-text'>{quote.text}</q>
       </div>
       <div className='card-footer'>
