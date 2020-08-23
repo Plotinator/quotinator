@@ -6,7 +6,7 @@ export function Grid (props) {
 }
 
 export function Row (props) {
-  return <div className={cx('columns col-gapless', props.className)}>{ props.children }</div>
+  return <div className={cx('columns', props.className, {'col-gapless': !props.gaps})}>{ props.children }</div>
 }
 
 export function Column (props) {

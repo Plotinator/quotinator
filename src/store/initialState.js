@@ -26,7 +26,7 @@ export const initialQuote = {
 
 export const initialTopic = {
   userId: '',
-  color: '',
+  color: '#49a4f3',
   name: '',
   position: 0,
 }

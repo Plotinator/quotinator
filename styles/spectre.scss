@@ -1,4 +1,8 @@
+@import "vars";
+
 // config spectre here
+$primary-color: $blue-6;
+$dark-color: $gray-0;
 
 // import spectre
 @import "node_modules/spectre.css/src/spectre";

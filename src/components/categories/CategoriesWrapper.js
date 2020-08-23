@@ -37,7 +37,7 @@ export default function CategoriesWrapper (props) {
       { renderFirstRowTabs() }
       <div className='input-group input-inline searchInput'>
         <input className='form-input' type='text' placeholder='Search'/>
-        <button className='btn input-group-btn'>Search</button>
+        <button className='btn btn-primary input-group-btn'>Search</button>
       </div>
     </div>
     <div className='categoriesWrapper secondRow'>

@@ -40,11 +40,11 @@ footer {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
+  height: 60px !important;
+  width: 60px !important;
+  // border-radius: 50%;
 
-  background-color: $blue-6;
+  // background-color: $blue-6;
   cursor: pointer;
 
   display: flex;
@@ -61,8 +61,8 @@ footer {
   }
 
   &:hover {
-    height: 67px;
-    width: 67px;
+    height: 67px !important;
+    width: 67px !important;
     svg {
       height: 2.5em;
       width: 2.5em;

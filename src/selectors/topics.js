@@ -7,3 +7,8 @@ export const topicsByIdSelector = createSelector(
   selectAllTopics,
   (topics) => keyBy(topics, 'id')
 )
+
+export const topicsByNameSelector = createSelector(
+  selectAllTopics,
+  (topics) => keyBy(topics, 'name')
+)

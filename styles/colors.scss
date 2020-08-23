@@ -12,16 +12,16 @@
 // $gray-9: hsl(210, 36%, 96%);
 
 // neutral gray
-// $gray-0: hsl(0, 0%, 13%);
-// $gray-1: hsl(0, 0%, 23%);
-// $gray-2: hsl(0, 0%, 32%);
-// $gray-3: hsl(0, 0%, 38%);
-// $gray-4: hsl(0, 0%, 49%);
-// $gray-5: hsl(0, 0%, 62%);
-// $gray-6: hsl(0, 0%, 69%);
-// $gray-7: hsl(0, 0%, 81%);
-// $gray-8: hsl(0, 0%, 88%);
-// $gray-9: hsl(0, 0%, 97%);
+$gray-alt-0: hsl(0, 0%, 13%);
+$gray-alt-1: hsl(0, 0%, 23%);
+$gray-alt-2: hsl(0, 0%, 32%);
+$gray-alt-3: hsl(0, 0%, 38%);
+$gray-alt-4: hsl(0, 0%, 49%);
+$gray-alt-5: hsl(0, 0%, 62%);
+$gray-alt-6: hsl(0, 0%, 69%);
+$gray-alt-7: hsl(0, 0%, 81%);
+$gray-alt-8: hsl(0, 0%, 88%);
+$gray-alt-9: hsl(0, 0%, 97%);
 
 // warm grey
 $gray-0: hsl(42, 15%, 13%);
@@ -64,9 +64,8 @@ $green-1: hsl(125, 86%, 20%);
 $green-2: hsl(125, 79%, 26%);
 $green-3: hsl(122, 80%, 29%);
 $green-4: hsl(122, 73%, 35%);
-// $green-5: hsl(123, 57%, 45%);
-$green-5: hsl(123, 35%, 51%); //different (comes from green - non-vivid)
-
+$green-5: hsl(123, 57%, 45%);
+// $green-5: hsl(123, 35%, 51%); //different (comes from green - non-vivid)
 $green-6: hsl(123, 53%, 55%);
 $green-7: hsl(124, 63%, 74%);
 $green-8: hsl(127, 65%, 85%);

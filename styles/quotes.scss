@@ -1,0 +1,29 @@
+@import "vars";
+
+
+.quote-modal {
+
+  .modal-container {
+    padding: 0;
+  }
+  .modal-header {
+    padding: 0.8rem 1.6rem;
+  }
+  .modal-body {
+    padding: 0.8rem 1.6rem;
+  }
+  .modal-footer {
+    padding: 0.8rem 1.6rem;
+  }
+
+  .quote-input {
+    @include header-font;
+    font-size: 18px;
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .quote-footer {
+    background-color: $gray-alt-9;
+  }
+}
