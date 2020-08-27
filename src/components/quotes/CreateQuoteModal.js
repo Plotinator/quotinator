@@ -13,6 +13,8 @@ import TopicsAutoComplete from '../topics/TopicsAutoComplete'
 
 export default function QuoteModal (props) {
   const [text, setText] = useState('')
+  const [notes, setNotes] = useState('')
+  const [showNotes, setShowNotes] = useState(false)
   const [authorId, setAuthorId] = useState(null)
   const [workId, setWorkId] = useState(null)
   const [topicIds, setTopicIds] = useState([])
@@ -20,6 +22,10 @@ export default function QuoteModal (props) {
 
   const updateText = e => {
     setText(e.target.value)
+  }
+
+  const updateNotes = e => {
+    setNotes(e.target.value)
   }
 
   const chooseAuthor = (id) => {
@@ -44,7 +50,7 @@ export default function QuoteModal (props) {
   const finishEditing = () => {
     if (!text) return props.onClose()
 
-    let quote = {text: text, userId: hardCodedUserId}
+    let quote = {text: text, notes: notes, userId: hardCodedUserId}
     if (authorId) quote.authorId = authorId
     if (workId) quote.workId = workId
     if (topicIds.length) quote.topicIds = topicIds
@@ -52,11 +58,20 @@ export default function QuoteModal (props) {
     props.onClose()
   }
 
+  const renderNotes = () => {
+    if (!showNotes) return <a onClick={() => setShowNotes(true)}>Add Notes?</a>
+
+    return <FormItem>
+      <textarea className='form-input quote-input' value={notes} onChange={updateNotes} autoFocus placeholder='Notes about the quote' rows={3}></textarea>
+    </FormItem>
+  }
+
   const renderForm = () => {
     return <div>
       <FormItem>
         <textarea className='form-input quote-input' value={text} onChange={updateText} autoFocus placeholder='Write that quote' rows={5}></textarea>
       </FormItem>
+      { renderNotes() }
       <Grid>
         <Row gaps className='my-2'>
           <Column size={6} className='col-xs-12'>

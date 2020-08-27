@@ -1,15 +1,14 @@
 import { Column } from '../spectre/Grid'
-import { useCollection } from '@nandorojo/swr-firestore'
-import hardCodedUserId from '../../store/hardCodedUserId'
 import Spinner from '../spectre/Spinner'
 import CardGrid from './CardGrid'
+import { useQuotesFilteredByTopic } from '../../hooks/quotes'
 
 export default function CardGridWrapper (props) {
-  const { data, error, isValidating, loading } = useCollection('quotes', {where: ['userId', '==', hardCodedUserId]})
+  const { data, selectedQuotes, error, isValidating, loading } = useQuotesFilteredByTopic()
 
   const renderData = () => {
-    if (data) {
-      return <CardGrid data={data} />
+    if (data && selectedQuotes) {
+      return <CardGrid quotes={selectedQuotes} />
     } else if (isValidating || loading) {
       return <Spinner large/>
     } else if (error) {

@@ -5,19 +5,20 @@ import { useCollection } from '@nandorojo/swr-firestore'
 import Spinner from '../spectre/Spinner'
 import hardCodedUserId from '../../store/hardCodedUserId'
 import { sortedWorkTypesSelector } from '../../selectors/workTypes'
+import { useSortedWorkTypes } from '../../hooks/workTypes'
 
-const tabs = ['Favorites', 'Authors', 'Works', 'Characters', 'Uncategorized']
+const tabs = ['All', 'Favorites', 'Authors', 'Works', 'Characters', 'Uncategorized']
 
 export default function CategoriesWrapper (props) {
   const [currentTab, changeTab] = useState(0)
-  const { data, error, isValidating, loading } = useCollection('workTypes', {where: ['userId', '==', hardCodedUserId]})
+
+  const { data, sortedWorkTypes, error, isValidating, loading } = useSortedWorkTypes()
 
 
   const renderSecondRowTabs = () => {
-    if (currentTab != 2) return <div className='category'>[some recents]</div>
+    if (currentTab != 3) return <div className='category'>[some recents]</div>
 
-    if (data) {
-      const sortedWorkTypes = sortedWorkTypesSelector(data) // TODO: think about this and find a better pattern
+    if (data && sortedWorkTypes) {
       return sortedWorkTypes.map(t => {
         return <div key={t.id} className='category'>{t.name}</div>
       })

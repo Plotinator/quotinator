@@ -12,13 +12,14 @@ import AuthorsAutoComplete from '../authors/AuthorsAutoComplete'
 export default function QuoteModal (props) {
   const quote = props.quote ?? {}
   const [text, setText] = useState(quote.text)
+  const [notes, setNotes] = useState(quote.notes)
   let intervalId = null
 
   useEffect(() => {
     setText(quote.text)
     intervalId = setInterval(() => {
-      if (quote.text != text) {
-        update(`quotes/${quote.id}`, {text: text})
+      if (quote.text != text || quote.notes != notes) {
+        update(`quotes/${quote.id}`, {text: text, notes: notes})
       }
     }, 10000)
 
@@ -29,6 +30,10 @@ export default function QuoteModal (props) {
 
   const updateText = e => {
     setText(e.target.value)
+  }
+
+  const updateNotes = e => {
+    setNotes(e.target.value)
   }
 
   const chooseWork = (id, isNew) => {
@@ -55,8 +60,8 @@ export default function QuoteModal (props) {
   }
 
   const finishEditing = () => {
-    if (quote.text != text) {
-      update(`quotes/${quote.id}`, {text: text})
+    if (quote.text != text || quote.notes != notes) {
+      update(`quotes/${quote.id}`, {text: text, notes: notes})
     }
     props.onClose()
   }
@@ -65,6 +70,9 @@ export default function QuoteModal (props) {
     return <div>
       <FormItem>
         <textarea tabIndex='0' className='form-input quote-input' value={text} onChange={updateText} autoFocus placeholder='Write that quote' rows={5}></textarea>
+      </FormItem>
+      <FormItem>
+        <textarea tabIndex='1' className='form-input quote-input' value={notes} onChange={updateNotes} placeholder='Notes about the quote' rows={3}></textarea>
       </FormItem>
       <Grid>
         <Row gaps className='my-2'>

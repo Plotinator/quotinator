@@ -18,6 +18,7 @@
     "react-icons": "^3.10.0",
     "react-proptypes": "^1.0.0",
     "react-redux": "^7.2.1",
+    "recoil": "^0.0.10",
     "redux": "^4.0.5",
     "reselect": "^4.0.0",
     "sass": "^1.26.10",

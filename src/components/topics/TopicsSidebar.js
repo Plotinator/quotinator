@@ -3,13 +3,14 @@ import { useCollection } from '@nandorojo/swr-firestore'
 import hardCodedUserId from '../../store/hardCodedUserId'
 import Spinner from '../spectre/Spinner'
 import TopicsList from './TopicsList'
+import { useSortedTopics } from '../../hooks/topics'
 
 export default function TopicsSidebar (props) {
-  const { data, error, isValidating, loading } = useCollection('topics', {where: ['userId', '==', hardCodedUserId]})
+  const { data, sortedTopics, error, isValidating, loading } = useSortedTopics()
 
   const renderData = () => {
-    if (data) {
-      return <TopicsList data={data} />
+    if (data && sortedTopics) {
+      return <TopicsList sortedTopics={sortedTopics} />
     } else if (isValidating || loading) {
       return <Spinner large/>
     } else if (error) {

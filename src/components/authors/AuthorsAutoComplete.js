@@ -70,6 +70,6 @@ export default function AuthorsAutoComplete (props) {
     addNew={createNewAuthor}
     hideInput={showCurrentAuthor && !!props.currentAuthorId}
     defaultInputValue={!showCurrentAuthor && authorsById[props.currentAuthorId].name}
-    tabIndex='1'
+    tabIndex='2'
   />
 }

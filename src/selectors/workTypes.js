@@ -5,5 +5,5 @@ const selectAllWorkTypes = data => data
 
 export const sortedWorkTypesSelector = createSelector(
   selectAllWorkTypes,
-  (works) => sortBy(works, 'position')
+  (types) => sortBy(types, 'position')
 )

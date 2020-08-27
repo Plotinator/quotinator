@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { setTopic } from '../../store/create_functions'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
-import { useTopicsById, useTopicNamesMap } from '../../hooks/topics'
+import { useTopicsById, useTopicNamesMap, useNextTopicPosition } from '../../hooks/topics'
 import TopicChip from '../topics/TopicChip'
 
 export default function TopicsAutoComplete (props) {
@@ -9,6 +9,7 @@ export default function TopicsAutoComplete (props) {
   const topicsByName = useTopicNamesMap()
   const topicNames = Object.keys(topicsByName)
   const [suggestions, setSuggestions] = useState([])
+  const nextTopicPosition = useNextTopicPosition()
 
   const suggestTopics = e => {
     const term = e.target.value
@@ -32,7 +33,7 @@ export default function TopicsAutoComplete (props) {
   }
 
   const createNewTopic = (val) => {
-    const newId = setTopic({name: val, userId: hardCodedUserId})
+    const newId = setTopic({name: val, position: nextTopicPosition ?? 0, userId: hardCodedUserId})
     props.chooseTopic(newId)
   }
 
@@ -54,6 +55,6 @@ export default function TopicsAutoComplete (props) {
     suggestions={suggestions}
     renderSuggestions={renderSuggestions}
     addNew={createNewTopic}
-    tabIndex='3'
+    tabIndex='4'
   />
 }

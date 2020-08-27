@@ -69,6 +69,6 @@ export default function WorksAutoComplete (props) {
     addNew={createNewWork}
     hideInput={showCurrentWork && !!props.currentWorkId}
     defaultInputValue={!showCurrentWork && worksById[props.currentWorkId].name}
-    tabInput='2'
+    tabInput='3'
   />
 }
