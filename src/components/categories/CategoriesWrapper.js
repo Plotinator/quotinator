@@ -1,36 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { selectedCategory } from '../../recoil/atoms'
+import { useRecoilState } from 'recoil'
 import { Column } from '../spectre/Grid'
 import cx from 'classnames'
-import { useCollection } from '@nandorojo/swr-firestore'
 import Spinner from '../spectre/Spinner'
-import hardCodedUserId from '../../store/hardCodedUserId'
-import { sortedWorkTypesSelector } from '../../selectors/workTypes'
 import { useSortedWorkTypes } from '../../hooks/workTypes'
-
-const tabs = ['All', 'Favorites', 'Authors', 'Works', 'Characters', 'Uncategorized']
+import { filterMap } from '../../utils/filter_mapping'
+import { mainTabs, secondaryTabs } from '../../utils/tabs'
 
 export default function CategoriesWrapper (props) {
-  const [currentTab, changeTab] = useState(0)
+  const [currentTab, changeTab] = useState(1)
+  const [category, setCategory] = useRecoilState(selectedCategory)
 
   const { data, sortedWorkTypes, error, isValidating, loading } = useSortedWorkTypes()
 
+  useEffect(() => {
+    setCategory(mainTabs[currentTab].func)
+  }, [currentTab])
 
   const renderSecondRowTabs = () => {
-    if (currentTab != 3) return <div className='category'>[some recents]</div>
-
+    let tabs = [...secondaryTabs]
     if (data && sortedWorkTypes) {
-      return sortedWorkTypes.map(t => {
-        return <div key={t.id} className='category'>{t.name}</div>
-      })
-    } else if (isValidating || loading) {
-      return <Spinner large/>
-    } else if (error) {
-      return <div>Error! {error}</div>
+      tabs = [secondaryTabs[0], ...sortedWorkTypes, secondaryTabs[1]]
     }
+    return tabs.map(t => {
+      return <div key={t.id} className='category'>{t.name}</div>
+    })
   }
 
   const renderFirstRowTabs = () => {
-    return tabs.map((t, idx) => <div key={idx} className={cx('category', {selected: currentTab == idx})} onClick={() => changeTab(idx)}>{t}</div>)
+    return mainTabs.map((t, idx) => <div key={idx} className={cx('category', {selected: currentTab == idx})} onClick={() => changeTab(idx)}>{t.label}</div>)
   }
 
   return <Column size={10}>

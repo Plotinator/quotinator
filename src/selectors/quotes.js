@@ -1,13 +1,14 @@
 import { createSelector } from 'reselect'
-import { uniq, groupBy } from 'lodash'
+import { groupBy } from 'lodash'
+import * as filterFunctions from '../utils/filters'
 
 const selectAllQuotes = data => data
 const topicIdsSelector = (data, ids) => ids
+const filterSelector = (data, ids, filter) => filter
 
 export const quotesByTopicIdSelector = createSelector(
   selectAllQuotes,
   (quotes) => {
-    console.log('quotesByTopicIdSelector')
     return quotes.reduce((acc, quote) => {
       quote.topicIds.forEach(id => {
         if (acc[id]) {
@@ -34,19 +35,26 @@ export const quotesByWorkIdSelector = createSelector(
   (quotes) => groupBy(quotes, 'workId')
 )
 
-export const quotesFilteredByTopicSelector = createSelector(
+export const filteredQuotesSelector = createSelector(
   selectAllQuotes,
   quotesByTopicIdSelector,
   topicIdsSelector,
-  (allQuotes, quotesByTopic, topicIds) => {
-    console.log('topicIds', quotesByTopic, topicIds)
-    if (!topicIds.length) return allQuotes
-
-    return topicIds.reduce((acc, id) => {
-      if (quotesByTopic[id]) {
-        acc.push(...quotesByTopic[id])
-      }
-      return acc
-    }, [])
+  filterSelector,
+  (allQuotes, quotesByTopic, topicIds, filter) => {
+    if (topicIds.length) {
+      const quoteObj = topicIds.reduce((acc, id) => {
+        if (quotesByTopic[id]) {
+          const visibleQuotes = quotesByTopic[id].filter(filterFunc(filter))
+          // ensure no duplicates
+          visibleQuotes.forEach(vQ => acc[vQ.id] = vQ)
+        }
+        return acc
+      }, {})
+      return Object.values(quoteObj)
+    } else {
+      return allQuotes.filter(filterFunc(filter))
+    }
   }
 )
+
+const filterFunc = (filter) => (quote) => filterFunctions[filter](quote)

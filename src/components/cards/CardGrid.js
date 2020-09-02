@@ -5,6 +5,8 @@ export default function CardGrid (props) {
   const { quotes } = props
 
   const renderCards = () => {
+    if (!quotes.length) return null
+
     return quotes.map(q => <Card key={q.id} quote={q} />)
   }
 
