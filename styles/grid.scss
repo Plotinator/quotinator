@@ -21,6 +21,7 @@ nav {
 
 main {
   grid-area: main;
+  overflow: hidden;
   .container {
     height: 100%;
     padding-left: 0;
