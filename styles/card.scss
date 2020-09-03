@@ -1,11 +1,11 @@
 @import "vars";
 
-.cardGridWrapper {
+.card-grid__wrapper {
   height: 100%;
   border-left: 1px solid $gray-6;
 }
 
-.cardGrid {
+.card-grid {
   height: 100%;
   padding: 20px;
   overflow-y: auto;
@@ -13,6 +13,7 @@
 
 .card {
   // height: 216.31px;
+  height: 250px;
   // width: 350px;
   margin: 10px;
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
@@ -20,9 +21,8 @@
   cursor: pointer;
 
   .card-body {
-    min-height: 150px;
-    max-height: 300px;
-    // height: 100%;
+    // min-height: 150px;
+    // max-height: 300px;
     overflow-y: auto;
     .favorite-star {
       float: left;

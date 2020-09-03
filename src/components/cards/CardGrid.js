@@ -1,18 +1,18 @@
-import Card from './Card'
+import Quote from '../quotes/Quote'
 import { Grid, Row } from '../spectre/Grid'
 
 export default function CardGrid (props) {
   const { quotes } = props
 
-  const renderCards = () => {
+  const renderQuotes = () => {
     if (!quotes.length) return null
 
-    return quotes.map(q => <Card key={q.id} quote={q} />)
+    return quotes.map(q => <Quote key={q.id} quote={q} />)
   }
 
   return <Grid>
-    <Row className='cardGrid'>
-      { renderCards() }
+    <Row className='card-grid'>
+      { renderQuotes() }
     </Row>
   </Grid>
 }

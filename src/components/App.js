@@ -1,6 +1,6 @@
 import { Grid, Column, Row } from './spectre/Grid'
 import Main from './Main'
-import CategoriesWrapper from './categories/CategoriesWrapper'
+import Navigation from './Navigation'
 import { RecoilRoot } from 'recoil'
 
 export default function App (props) {
@@ -15,7 +15,7 @@ export default function App (props) {
                 <h1>Quotr</h1>
               </div>
             </Column>
-            <CategoriesWrapper/>
+            <Navigation/>
           </Row>
         </Grid>
       </nav>

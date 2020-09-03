@@ -23,6 +23,9 @@
   .category.selected {
     background-color: $gray-7;
   }
+  .category.secondary.selected {
+    background-color: $gray-6;
+  }
 
   .searchInput {
     margin-left: auto;

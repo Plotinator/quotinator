@@ -11,7 +11,7 @@ export const selectedCategory = atom({
   default: 'favorites'
 })
 
-export const selectedSort = atom({
-  key: 'selectedSort',
-  default: ''
+export const selectedSecondaryTab = atom({
+  key: 'secondaryTab',
+  default: 'all'
 })

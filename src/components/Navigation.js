@@ -1,35 +1,27 @@
 import { useState, useEffect } from 'react'
-import { selectedCategory } from '../../recoil/atoms'
 import { useRecoilState } from 'recoil'
-import { Column } from '../spectre/Grid'
+import { selectedCategory, selectedSecondaryTab } from '../recoil/atoms'
+import { Column } from './spectre/Grid'
 import cx from 'classnames'
-import Spinner from '../spectre/Spinner'
-import { useSortedWorkTypes } from '../../hooks/workTypes'
-import { filterMap } from '../../utils/filter_mapping'
-import { mainTabs, secondaryTabs } from '../../utils/tabs'
+import { useSortedWorkTypes } from '../hooks/workTypes'
+import { mainTabs, secondaryTabs } from '../utils/tabs'
 
-export default function CategoriesWrapper (props) {
-  const [currentTab, changeTab] = useState(1)
+export default function Navigation (props) {
   const [category, setCategory] = useRecoilState(selectedCategory)
+  const [secondaryTab, setSecondaryTab] = useRecoilState(selectedSecondaryTab)
 
   const { data, sortedWorkTypes, error, isValidating, loading } = useSortedWorkTypes()
-
-  useEffect(() => {
-    setCategory(mainTabs[currentTab].func)
-  }, [currentTab])
 
   const renderSecondRowTabs = () => {
     let tabs = [...secondaryTabs]
     if (data && sortedWorkTypes) {
-      tabs = [secondaryTabs[0], ...sortedWorkTypes, secondaryTabs[1]]
+      tabs = [secondaryTabs[0], secondaryTabs[1], ...sortedWorkTypes, secondaryTabs[2]]
     }
-    return tabs.map(t => {
-      return <div key={t.id} className='category'>{t.name}</div>
-    })
+    return tabs.map(t => <div key={t.id} className={cx('category secondary', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
   }
 
   const renderFirstRowTabs = () => {
-    return mainTabs.map((t, idx) => <div key={idx} className={cx('category', {selected: currentTab == idx})} onClick={() => changeTab(idx)}>{t.label}</div>)
+    return mainTabs.map(t => <div key={t.id} className={cx('category', {selected: category == t.id})} onClick={() => setCategory(t.id)}>{t.label}</div>)
   }
 
   return <Column size={10}>
