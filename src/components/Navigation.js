@@ -17,7 +17,7 @@ export default function Navigation (props) {
     if (data && sortedWorkTypes) {
       tabs = [secondaryTabs[0], secondaryTabs[1], ...sortedWorkTypes, secondaryTabs[2]]
     }
-    return tabs.map(t => <div key={t.id} className={cx('category secondary', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
+    return tabs.map(t => <div key={t.id} className={cx('category', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
   }
 
   const renderFirstRowTabs = () => {
@@ -25,15 +25,17 @@ export default function Navigation (props) {
   }
 
   return <Column size={10}>
-    <div className='categoriesWrapper'>
-      { renderFirstRowTabs() }
+    <div className='categories-wrapper'>
+      { renderSecondRowTabs() }
       <div className='input-group input-inline searchInput'>
         <input className='form-input' type='text' placeholder='Search'/>
         <button className='btn btn-primary input-group-btn'>Search</button>
       </div>
     </div>
-    <div className='categoriesWrapper secondRow'>
-      { renderSecondRowTabs() }
+    <div className='categories-segment-wrapper'>
+      <div className='categories-segment'>
+        { renderFirstRowTabs() }
+      </div>
     </div>
   </Column>
 }

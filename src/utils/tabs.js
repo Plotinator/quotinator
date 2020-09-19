@@ -1,7 +1,7 @@
 
 export const mainTabs = [
-  {label: 'All', id: 'all'},
   {label: 'Favorites', id: 'favorites'},
+  {label: 'All', id: 'all'},
   {label: 'Uncategorized', id: 'uncategorized'},
 ]
 

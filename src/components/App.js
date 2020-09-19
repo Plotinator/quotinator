@@ -11,8 +11,9 @@ export default function App (props) {
         <Grid>
           <Row>
             <Column size={2}>
-              <div className='brandBanner'>
+              <div className='top-left-corner'>
                 <h1>Quotr</h1>
+                <div className='topics-text'>Topics</div>
               </div>
             </Column>
             <Navigation/>

@@ -3,6 +3,7 @@ import { setTopic } from '../../store/create_functions'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
 import { useTopicsById, useTopicNamesMap, useNextTopicPosition } from '../../hooks/topics'
 import TopicChip from '../topics/TopicChip'
+import hardCodedUserId from '../../store/hardCodedUserId'
 
 export default function TopicsAutoComplete (props) {
   const topicsById = useTopicsById()

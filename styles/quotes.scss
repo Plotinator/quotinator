@@ -27,3 +27,48 @@
     background-color: $gray-alt-9;
   }
 }
+
+q {
+  @include header-font;
+  quotes: "“" "”" "‘" "’";
+  line-height: calc(1.3rem + 0.1vw);
+  font-size: calc(16px + 0.1vw);
+}
+q::before {
+  content: open-quote;
+  @include header-font;
+  font-size: 30px;
+  color: $gray-7;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+q::after {
+  content: close-quote;
+  @include header-font;
+  font-size: 30px;
+  color: $gray-7;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.quote-list__wrapper {
+  height: 100%;
+}
+.quote-list__header {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+.quote-list {
+  height: calc(100% - 33px - 32px); // 33 = height of h3, 32 = 16+16 top/bottom margins
+  overflow: auto;
+  list-style-type: none;
+  li {
+    cursor: pointer;
+    padding-bottom: 16px;
+    &:hover {
+      background-color: $gray-9;
+    }
+  }
+}

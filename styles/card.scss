@@ -2,7 +2,6 @@
 
 .card-grid__wrapper {
   height: 100%;
-  border-left: 1px solid $gray-6;
 }
 
 .card-grid {
@@ -19,6 +18,26 @@
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
   overflow: hidden;
   cursor: pointer;
+
+  &.work {
+    height: 300px;
+    transition: all $cubic;
+
+    &:hover {
+      background-color: $gray-9;
+      box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+    }
+  }
+
+  &.author {
+    height: 200px;
+    transition: all $cubic;
+
+    &:hover {
+      background-color: $gray-9;
+      box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+    }
+  }
 
   .card-body {
     // min-height: 150px;
@@ -54,29 +73,6 @@
           color: $gray-0;
         }
       }
-    }
-
-    .quote-text {
-      @include header-font;
-      quotes: "“" "”" "‘" "’";
-      line-height: calc(1.3rem + 0.1vw);
-      font-size: calc(16px + 0.1vw);
-    }
-    .quote-text::before {
-      content: open-quote;
-      @include header-font;
-      font-size: 30px;
-      color: $gray-7;
-      vertical-align: middle;
-      margin-right: 2px;
-    }
-    .quote-text::after {
-      content: close-quote;
-      @include header-font;
-      font-size: 30px;
-      color: $gray-7;
-      vertical-align: middle;
-      margin-left: 2px;
     }
   }
 

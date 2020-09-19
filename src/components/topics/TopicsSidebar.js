@@ -19,7 +19,6 @@ export default function TopicsSidebar (props) {
   }
 
   return <Column size={2} className='topicsSidebar'>
-    <div className='topicsText'>Topics</div>
     { renderData() }
   </Column>
 }

@@ -1,0 +1,33 @@
+@import "vars";
+
+.work__body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  h1 {
+    font-size: x-large;
+  }
+  h2 {
+    font-size: larger;
+  }
+}
+
+.work-details {
+  margin-left: 0;
+  margin-right: 0;
+  height: 100%;
+  div.column {
+    padding: 16px;
+    &:last-child {
+      padding-bottom: 0;
+    }
+    button {
+      margin-bottom: 12px;
+      &:hover {
+        background-color: $blue-6;
+        color: white;
+      }
+    }
+  }
+}

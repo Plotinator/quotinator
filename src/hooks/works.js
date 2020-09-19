@@ -1,23 +1,35 @@
 import { useCollection } from '@nandorojo/swr-firestore'
-import { worksByIdSelector, worksByNameSelector } from '../selectors/works'
+import { groupBy } from 'lodash'
+import { worksByIdSelector, worksByNameSelector, workIdsOfWorkTypeSelector } from '../selectors/works'
 import hardCodedUserId from '../store/hardCodedUserId'
 
+export function useWorks () {
+  return useCollection('works', {where: ['userId', '==', hardCodedUserId]})
+}
+
 export function useWorksById () {
-  const { data: works } = useCollection('works', {where: ['userId', '==', hardCodedUserId]})
-  return works ? worksByIdSelector(works) : null
+  const { data } = useWorks()
+  return data ? worksByIdSelector(data) : null
 }
 
 export function useWork (workId) {
-  const { data: works } = useCollection('works', {where: ['userId', '==', hardCodedUserId]})
-  if (!works) return null
+  const { data } = useWorks()
+  if (!workId) return null
+  if (!data) return null
 
-  const worksById = worksByIdSelector(works)
-  return worksById[workId]
+  return worksByIdSelector(data)[workId]
 }
 
 export function useWorkNamesMap () {
-  const { data: works } = useCollection('works', {where: ['userId', '==', hardCodedUserId]})
-  if (!works) return []
+  const { data } = useWorks()
+  if (!data) return []
 
-  return worksByNameSelector(works)
+  return worksByNameSelector(data)
+}
+
+export function useWorkIdsOfWorkType (workTypeId) {
+  const { data } = useWorks()
+  if (!data) return []
+
+  return workIdsOfWorkTypeSelector(data, workTypeId)
 }

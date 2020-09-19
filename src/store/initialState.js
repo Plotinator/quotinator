@@ -40,6 +40,7 @@ export const initialWork = {
   userId: '',
   name: '',
   authorId: '',
+  workTypeId: '',
 }
 
 export const initialWorkType = {

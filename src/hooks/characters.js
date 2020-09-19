@@ -9,10 +9,10 @@ export function useCharactersById () {
 
 export function useCharacter (characterId) {
   const { data: characters } = useCollection('characters', {where: ['userId', '==', hardCodedUserId]})
+  if (!characterId) return null
   if (!characters) return null
 
-  const charactersById = charactersByIdSelector(characters)
-  return charactersById[characterId]
+  return charactersByIdSelector(characters)[characterId]
 }
 
 export function useCharacterNamesMap () {

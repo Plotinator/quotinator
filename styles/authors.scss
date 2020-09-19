@@ -1,0 +1,23 @@
+@import "vars";
+
+.author__body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  h1 {
+    font-size: larger;
+  }
+  svg {
+    align-self: center;
+    height: 7em;
+    width: 7em;
+    fill: $blue-9;
+  }
+
+  &:hover {
+    svg {
+      fill: $blue-7;
+    }
+  }
+}

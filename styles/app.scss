@@ -3,6 +3,8 @@
 @import "categories";
 @import "card";
 @import "quotes";
+@import "works";
+@import "authors";
 
 @import "vars";
 @import "colors";
@@ -26,16 +28,27 @@ h1, h2, h3, h4, h5, h6 {
   @include header-font;
 }
 
-.brandBanner {
+.top-left-corner {
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   background-color: $gray-8;
+  box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
   h1 {
-    font-size: calc(2rem + 0.75vw);
-    line-height: calc(2rem + 0.75vw);
+    font-size: calc(1.2rem + 0.75vw);
+    line-height: calc(1.2rem + 0.75vw);
     font-family: 'Pacifico', cursive !important;
-    margin-bottom: 9px;
+    margin-top: 10px;
+  }
+  .topics-text {
+    width: 100%;
+    @include header-font;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: $gray-7;
   }
 }

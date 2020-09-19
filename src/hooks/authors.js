@@ -2,26 +2,31 @@ import { useCollection } from '@nandorojo/swr-firestore'
 import { authorsByIdSelector, authorsByNameSelector } from '../selectors/authors'
 import hardCodedUserId from '../store/hardCodedUserId'
 
+
+export function useAuthors () {
+  return useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+}
+
 export function useAuthorsById () {
-  const { data: authors } = useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+  const { data: authors } = useAuthors()
   return authors ? authorsByIdSelector(authors) : null
 }
 
 export function useAuthor (authorId) {
-  const { data: authors } = useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+  const { data: authors } = useAuthors()
+  if (!authorId) return null
   if (!authors) return null
 
-  const authorsById = authorsByIdSelector(authors)
-  return authorsById[authorId]
+  return authorsByIdSelector(authors)[authorId]
 }
 
 export function useAddAuthor () {
-  const { add } = useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+  const { add } = useAuthors()
   return add
 }
 
 export function useAuthorNamesMap () {
-  const { data: authors } = useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+  const { data: authors } = useAuthors()
   if (!authors) return []
 
   return authorsByNameSelector(authors)

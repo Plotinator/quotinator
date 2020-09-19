@@ -1,10 +1,15 @@
 import { createSelector } from 'reselect'
-import { groupBy } from 'lodash'
+import { groupBy, keyBy } from 'lodash'
 import * as filterFunctions from '../utils/filters'
 
 const selectAllQuotes = data => data
 const topicIdsSelector = (data, ids) => ids
 const filterSelector = (data, ids, filter) => filter
+
+export const quotesByIdSelector = createSelector(
+  selectAllQuotes,
+  (quotes) => keyBy(quotes, 'id')
+)
 
 export const quotesByTopicIdSelector = createSelector(
   selectAllQuotes,

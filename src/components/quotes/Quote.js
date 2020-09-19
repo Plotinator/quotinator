@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { openedQuoteModal } from '../../recoil/atoms'
 import cx from 'classnames'
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
 import { Column } from '../spectre/Grid'
@@ -9,17 +11,15 @@ import { useAuthor } from '../../hooks/authors'
 import { useTopicsById } from '../../hooks/topics'
 import { useWork } from '../../hooks/works'
 import { useCharacter } from '../../hooks/characters'
+import { Card, CardBody, CardFooter } from '../cards/Card'
+import TopicChipsList from '../topics/TopicChipsList'
 
 export default function Quote (props) {
   const quote = props.quote
-  const [open, setOpen] = useState(false)
-  const topicsById = useTopicsById()
+  const [openedQuote, setOpenedQuote] = useRecoilState(openedQuoteModal)
   const author = useAuthor(quote.authorId)
   const work = useWork(quote.workId)
   const character = useCharacter(quote.characterId)
-
-  // TODO: handle pressing esc to close modal
-  // TODO: probably move modal to <Main/> once I add Recoil so it can be a global thing
 
   const toggleFavorite = e => {
     e.stopPropagation()
@@ -32,12 +32,6 @@ export default function Quote (props) {
     } else {
       return <IoIosStarOutline className='favorite-star' onClick={toggleFavorite}/>
     }
-  }
-
-  const renderTopics = () => {
-    if (topicsById && quote.topicIds?.length) {
-      return quote.topicIds.map(id => <TopicChip key={id} topic={topicsById[id]} />)
-    } else return null
   }
 
   const renderAuthor = () => {
@@ -58,21 +52,16 @@ export default function Quote (props) {
     } else return null
   }
 
-  return <Column size={3} className='col-lg-4 col-sm-6 col-xs-12'>
-    {open ? <EditQuoteModal open={open} quote={quote} onClose={() => setOpen(false)}/> : null}
-    <div className='card' onClick={() => setOpen(true)}>
-      <div className='card-body'>
-        { renderStar() }
-        <q className='quote-text'>{quote.text}</q>
-      </div>
-      <div className='card-footer'>
-        { renderAuthor() }
-        { renderCharacter() }
-        { renderWork() }
-        <div className='topic-chips-wrapper'>
-          { renderTopics() }
-        </div>
-      </div>
-    </div>
-  </Column>
+  return <Card onClick={() => setOpenedQuote(quote.id)}>
+    <CardBody>
+      { renderStar() }
+      <q>{quote.text}</q>
+    </CardBody>
+    <CardFooter>
+      { renderAuthor() }
+      { renderCharacter() }
+      { renderWork() }
+      <TopicChipsList topicIds={quote.topicIds} />
+    </CardFooter>
+  </Card>
 }
