@@ -18,7 +18,7 @@ export default function Home(props) {
       </Head>
 
       <FuegoProvider fuego={fuego}>
-        <App/>
+        <App isDev={props.isDev}/>
       </FuegoProvider>
     </div>
   )
@@ -37,6 +37,6 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: { firebaseConfig }, // will be passed to the page component as props
+    props: { firebaseConfig, isDev: process.env.NODE_ENV == 'development' }, // will be passed to the page component as props
   }
 }

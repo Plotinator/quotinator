@@ -1,0 +1,18 @@
+
+.autocomplete.form-autocomplete {
+  .form-autocomplete-input {
+    padding-right: 35px;
+  }
+  .input-group {
+    flex-grow: 1;
+  }
+}
+.autocomplete-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+.autocomplete.menu {
+  max-height: 250px;
+  overflow: auto;
+}

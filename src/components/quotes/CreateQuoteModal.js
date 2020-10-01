@@ -10,6 +10,8 @@ import { createQuote } from '../../store/create_functions'
 import AuthorsAutoComplete from '../authors/AuthorsAutoComplete'
 import WorksAutoComplete from '../works/WorksAutoComplete'
 import TopicsAutoComplete from '../topics/TopicsAutoComplete'
+import { useQuotes } from '../../hooks/quotes'
+import { useWork } from '../../hooks/works'
 
 export default function QuoteModal (props) {
   const [text, setText] = useState('')
@@ -18,7 +20,8 @@ export default function QuoteModal (props) {
   const [authorId, setAuthorId] = useState(null)
   const [workId, setWorkId] = useState(null)
   const [topicIds, setTopicIds] = useState([])
-  const { add } = useCollection('quotes', {where: ['userId', '==', hardCodedUserId]})
+  const work = useWork(workId)
+  const { add } = useQuotes()
 
   const updateText = e => {
     setText(e.target.value)
@@ -59,7 +62,7 @@ export default function QuoteModal (props) {
   }
 
   const renderNotes = () => {
-    if (!showNotes) return <a onClick={() => setShowNotes(true)}>Add Notes?</a>
+    if (!showNotes) return <a style={{cursor: 'pointer'}} onClick={() => setShowNotes(true)}>Add Notes?</a>
 
     return <FormItem>
       <textarea className='form-input quote-input' value={notes} onChange={updateNotes} autoFocus placeholder='Notes about the quote' rows={3}></textarea>
@@ -77,13 +80,13 @@ export default function QuoteModal (props) {
           <Column size={6} className='col-xs-12'>
             <FormItem>
               <FormLabel htmlFor='author-name'>By who?</FormLabel>
-              <AuthorsAutoComplete chooseAuthor={chooseAuthor} currentAuthorId={authorId} />
+              <AuthorsAutoComplete chooseAuthor={chooseAuthor} currentAuthorId={authorId || work?.authorId} />
             </FormItem>
           </Column>
           <Column size={6} className='col-xs-12'>
             <FormItem>
               <FormLabel>Title of book <span className='text-gray'>(or speech, poem, etc.)</span></FormLabel>
-              <WorksAutoComplete chooseWork={chooseWork} currentWorkId={workId} />
+              <WorksAutoComplete chooseWork={chooseWork} currentWorkId={workId} authorId={authorId} />
             </FormItem>
           </Column>
         </Row>

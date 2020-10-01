@@ -1,7 +1,7 @@
 import cx from 'classnames'
 
 export function Modal (props) {
-  return <div className={cx('modal', props.className, {active: props.open})}>
+  return <div className={cx('modal modal-lg', props.className, {active: props.open})}>
     <div className='modal-overlay' aria-label='Close' onClick={props.onClose}/>
     <div className='modal-container'>
       { props.children }

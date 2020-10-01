@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
 import hardCodedUserId from '../../store/hardCodedUserId'
-import { useAuthorsById, useAuthorNamesMap } from '../../hooks/authors'
+import { useAuthorsById, useAuthorNamesMap, useAuthors } from '../../hooks/authors'
 import { setAuthor } from '../../store/create_functions'
 import Chip from '../spectre/Chip'
 
 export default function AuthorsAutoComplete (props) {
+  const { data: allAuthors } = useAuthors()
   const authorsById = useAuthorsById()
   const authorsByName = useAuthorNamesMap()
   const authorNames = Object.keys(authorsByName)
@@ -15,8 +16,11 @@ export default function AuthorsAutoComplete (props) {
   const suggestAuthors = e => {
     const term = e.target.value
     if (term?.length > 1) {
-      const newSuggestions = authorNames.reduce((acc, name) => {
+      let addTerm = true
+      let newSuggestions = authorNames.reduce((acc, name) => {
         const author = authorsByName[name]
+        if (name.toLowerCase() == term.toLowerCase()) addTerm = false
+
         if (!showCurrentAuthor) {
           if (name.toLowerCase().includes(term.toLowerCase())) acc.push(author)
         } else {
@@ -27,14 +31,20 @@ export default function AuthorsAutoComplete (props) {
         }
         return acc
       }, [])
+      if (addTerm) {
+        newSuggestions.push({id: 'new', name: `Add "${term}"`, actualName: term})
+      }
       setSuggestions(newSuggestions)
     } else {
       setSuggestions([])
     }
   }
 
-  const chooseAuthor = (id) => {
-    props.chooseAuthor(id)
+  const chooseAuthor = (author) => {
+    if (author.id == 'new') {
+      return createNewAuthor(author.actualName)
+    }
+    props.chooseAuthor(author.id)
     toggleShowCurrent(true)
     setSuggestions([])
   }
@@ -56,17 +66,13 @@ export default function AuthorsAutoComplete (props) {
     } else return null
   }
 
-  const renderSuggestions = () => {
-    if (!suggestions.length) return null
-    return suggestions.map(work => <AutoCompleteMenuItem key={work.id} onChoose={() => chooseAuthor(work.id)}>{work.name}</AutoCompleteMenuItem>)
-  }
-
   return <AutoComplete
     placeholder='Name'
     onChange={suggestAuthors}
     renderItems={renderAuthor}
     suggestions={suggestions}
-    renderSuggestions={renderSuggestions}
+    allPossible={allAuthors}
+    chooseItem={chooseAuthor}
     addNew={createNewAuthor}
     hideInput={showCurrentAuthor && !!props.currentAuthorId}
     defaultInputValue={!showCurrentAuthor && authorsById[props.currentAuthorId].name}

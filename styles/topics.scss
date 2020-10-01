@@ -6,23 +6,23 @@
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
 
   .topicsList {
-    padding: 3px 7px;
+    // padding: 3px 7px;
   }
 
   .topic {
-    padding: 7px 4px;
+    padding: 6px 8px;
     // font-size: 26px;
     font-size: calc(16px + 0.5vw);
     cursor: pointer;
   }
   .topic:hover {
-    background-color: $gray-8;
+    background-color: $gray-9;
   }
   .topic.selected {
     background-color: $gray-7;
   }
   .topic.selected:hover {
-    background-color: $gray-8;
+    background-color: $gray-6;
   }
 }
 

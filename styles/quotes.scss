@@ -1,18 +1,28 @@
 @import "vars";
 
 .quote-modal {
-
   .modal-container {
+    height: 100vh;
+    max-height: 100vh;
     padding: 0;
-    margin-bottom: calc(100vh / 4);
+    // margin-bottom: calc(100vh / 4);
+    display: grid;
+    grid-template-areas: 'header'
+                         'main'
+                         'footer';
+    grid-template-rows: auto 1fr auto;
   }
   .modal-header {
+    grid-area: header;
     padding: 0.8rem 1.6rem;
   }
   .modal-body {
+    grid-area: main;
+    overflow: auto;
     padding: 0.8rem 1.6rem;
   }
   .modal-footer {
+    grid-area: footer;
     padding: 0.8rem 1.6rem;
   }
 

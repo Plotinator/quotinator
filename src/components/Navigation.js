@@ -12,7 +12,7 @@ export default function Navigation (props) {
 
   const { data, sortedWorkTypes, error, isValidating, loading } = useSortedWorkTypes()
 
-  const renderSecondRowTabs = () => {
+  const renderCategoryChooser = () => {
     let tabs = [...secondaryTabs]
     if (data && sortedWorkTypes) {
       tabs = [secondaryTabs[0], secondaryTabs[1], ...sortedWorkTypes, secondaryTabs[2]]
@@ -20,13 +20,13 @@ export default function Navigation (props) {
     return tabs.map(t => <div key={t.id} className={cx('category', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
   }
 
-  const renderFirstRowTabs = () => {
-    return mainTabs.map(t => <div key={t.id} className={cx('category', {selected: category == t.id})} onClick={() => setCategory(t.id)}>{t.label}</div>)
+  const renderFilterChooser = () => {
+    return mainTabs.map(t => <div key={t.id} className={cx('category', {selected: category == t.id})} onClick={() => setCategory(t.id)}><div>{t.label}</div></div>)
   }
 
   return <Column size={10}>
     <div className='categories-wrapper'>
-      { renderSecondRowTabs() }
+      { renderCategoryChooser() }
       <div className='input-group input-inline searchInput'>
         <input className='form-input' type='text' placeholder='Search'/>
         <button className='btn btn-primary input-group-btn'>Search</button>
@@ -34,7 +34,7 @@ export default function Navigation (props) {
     </div>
     <div className='categories-segment-wrapper'>
       <div className='categories-segment'>
-        { renderFirstRowTabs() }
+        { renderFilterChooser() }
       </div>
     </div>
   </Column>
