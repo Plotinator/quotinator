@@ -1,10 +1,11 @@
 import { useCollection } from '@nandorojo/swr-firestore'
 import { authorsByIdSelector, authorsByNameSelector } from '../selectors/authors'
-import hardCodedUserId from '../store/hardCodedUserId'
+import { useUser } from './user'
 
 
 export function useAuthors () {
-  return useCollection('authors', {where: ['userId', '==', hardCodedUserId]})
+  const { user } = useUser()
+  return useCollection('authors', {where: ['userId', '==', user?.uid]})
 }
 
 export function useAuthorsById () {

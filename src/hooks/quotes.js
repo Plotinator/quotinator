@@ -1,11 +1,12 @@
 import { useRecoilValue } from 'recoil'
 import { useCollection } from '@nandorojo/swr-firestore'
 import { selectedTopicIds, selectedCategory } from '../recoil/atoms'
-import hardCodedUserId from '../store/hardCodedUserId'
 import { filteredQuotesSelector, quotesByIdSelector } from '../selectors/quotes'
+import { useUser } from './user'
 
 export function useQuotes () {
-  return useCollection('quotes', {where: ['userId', '==', hardCodedUserId]})
+  const { user } = useUser()
+  return useCollection('quotes', {where: ['userId', '==', user?.uid]})
 }
 
 export function useQuote (quoteId) {

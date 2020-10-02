@@ -1,6 +1,4 @@
 import { Column } from '../spectre/Grid'
-import { useCollection } from '@nandorojo/swr-firestore'
-import hardCodedUserId from '../../store/hardCodedUserId'
 import Spinner from '../spectre/Spinner'
 import TopicsList from './TopicsList'
 import { useSortedTopics } from '../../hooks/topics'

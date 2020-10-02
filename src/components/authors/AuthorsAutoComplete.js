@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
-import hardCodedUserId from '../../store/hardCodedUserId'
 import { useAuthorsById, useAuthorNamesMap, useAuthors } from '../../hooks/authors'
 import { setAuthor } from '../../store/create_functions'
 import Chip from '../spectre/Chip'
+import { useUser } from '../../hooks/user'
 
 export default function AuthorsAutoComplete (props) {
+  const { user } = useUser()
   const { data: allAuthors } = useAuthors()
   const authorsById = useAuthorsById()
   const authorsByName = useAuthorNamesMap()
@@ -50,7 +51,7 @@ export default function AuthorsAutoComplete (props) {
   }
 
   const createNewAuthor = (val) => {
-    const newId = setAuthor({name: val, userId: hardCodedUserId})
+    const newId = setAuthor({name: val, userId: user?.uid})
     props.chooseAuthor(newId)
     toggleShowCurrent(true)
     setSuggestions([])

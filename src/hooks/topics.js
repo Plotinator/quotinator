@@ -1,9 +1,10 @@
 import { useCollection } from '@nandorojo/swr-firestore'
 import { topicsByIdSelector, topicsByNameSelector, nextTopicPositionSelector, sortedTopicsSelector } from '../selectors/topics'
-import hardCodedUserId from '../store/hardCodedUserId'
+import { useUser } from './user'
 
 export function useTopics () {
-  return useCollection('topics', {where: ['userId', '==', hardCodedUserId]})
+  const { user } = useUser()
+  return useCollection('topics', {where: ['userId', '==', user?.uid]})
 }
 
 export function useTopicsById () {

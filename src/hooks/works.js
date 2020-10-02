@@ -1,10 +1,11 @@
 import { useCollection } from '@nandorojo/swr-firestore'
 import { groupBy } from 'lodash'
 import { worksByIdSelector, worksByNameSelector, workIdsOfWorkTypeSelector } from '../selectors/works'
-import hardCodedUserId from '../store/hardCodedUserId'
+import { useUser } from './user'
 
 export function useWorks () {
-  return useCollection('works', {where: ['userId', '==', hardCodedUserId]})
+  const { user } = useUser()
+  return useCollection('works', {where: ['userId', '==', user?.uid]})
 }
 
 export function useWorksById () {

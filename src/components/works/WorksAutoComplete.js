@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
-import hardCodedUserId from '../../store/hardCodedUserId'
 import { useWorksById, useWorkNamesMap, useWorks } from '../../hooks/works'
 import { setWork } from '../../store/create_functions'
+import { useUser } from '../../hooks/user'
 
 export default function WorksAutoComplete (props) {
+  const { user } = useUser()
   const { data: allWorks } = useWorks()
   const [filteredWorks, setFilteredWorks] = useState(props.authorId && allWorks ? allWorks.filter(w => w.authorId == props.authorId) : allWorks)
   const worksById = useWorksById()
@@ -58,7 +59,7 @@ export default function WorksAutoComplete (props) {
   }
 
   const createNewWork = (val) => {
-    const newId = setWork({name: val, authorId: props.authorId, userId: hardCodedUserId})
+    const newId = setWork({name: val, authorId: props.authorId, userId: user?.uid})
     props.chooseWork(newId, true)
     toggleShowCurrent(true)
     setSuggestions([])

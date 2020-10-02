@@ -3,9 +3,10 @@ import { setTopic } from '../../store/create_functions'
 import { AutoComplete, AutoCompleteMenuItem } from '../spectre/AutoComplete'
 import { useTopicsById, useTopicNamesMap, useNextTopicPosition, useTopics } from '../../hooks/topics'
 import TopicChip from '../topics/TopicChip'
-import hardCodedUserId from '../../store/hardCodedUserId'
+import { useUser } from '../../hooks/user'
 
 export default function TopicsAutoComplete (props) {
+  const { user } = useUser()
   const { data: allTopics } = useTopics()
   const topicsById = useTopicsById()
   const topicsByName = useTopicNamesMap()
@@ -45,7 +46,7 @@ export default function TopicsAutoComplete (props) {
   }
 
   const createNewTopic = (val) => {
-    const newId = setTopic({name: val, position: nextTopicPosition ?? 0, userId: hardCodedUserId})
+    const newId = setTopic({name: val, position: nextTopicPosition ?? 0, userId: user?.uid})
     props.chooseTopic(newId)
   }
 

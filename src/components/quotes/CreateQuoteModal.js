@@ -5,15 +5,16 @@ import Button from '../spectre/Button'
 import { Grid, Row, Column } from '../spectre/Grid'
 import { FormItem, FormLabel } from '../spectre/Form'
 import { useCollection } from '@nandorojo/swr-firestore'
-import hardCodedUserId from '../../store/hardCodedUserId'
 import { createQuote } from '../../store/create_functions'
 import AuthorsAutoComplete from '../authors/AuthorsAutoComplete'
 import WorksAutoComplete from '../works/WorksAutoComplete'
 import TopicsAutoComplete from '../topics/TopicsAutoComplete'
 import { useQuotes } from '../../hooks/quotes'
 import { useWork } from '../../hooks/works'
+import { useUser } from '../../hooks/user'
 
 export default function QuoteModal (props) {
+  const { user } = useUser()
   const [text, setText] = useState('')
   const [notes, setNotes] = useState('')
   const [showNotes, setShowNotes] = useState(false)
@@ -53,7 +54,7 @@ export default function QuoteModal (props) {
   const finishEditing = () => {
     if (!text) return props.onClose()
 
-    let quote = {text: text, notes: notes, userId: hardCodedUserId}
+    let quote = {text: text, notes: notes, userId: user?.uid}
     if (authorId) quote.authorId = authorId
     if (workId) quote.workId = workId
     if (topicIds.length) quote.topicIds = topicIds

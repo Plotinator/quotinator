@@ -1,14 +1,19 @@
 import { useCollection } from '@nandorojo/swr-firestore'
 import { charactersByIdSelector, charactersByNameSelector } from '../selectors/characters'
-import hardCodedUserId from '../store/hardCodedUserId'
+import { useUser } from './user'
+
+export function useCharacters () {
+  const { user } = useUser()
+  return useCollection('characters', {where: ['userId', '==', user?.uid]})
+}
 
 export function useCharactersById () {
-  const { data: characters } = useCollection('characters', {where: ['userId', '==', hardCodedUserId]})
+  const { data: characters } = useCharacters()
   return characters ? charactersByIdSelector(characters) : null
 }
 
 export function useCharacter (characterId) {
-  const { data: characters } = useCollection('characters', {where: ['userId', '==', hardCodedUserId]})
+  const { data: characters } = useCharacters()
   if (!characterId) return null
   if (!characters) return null
 
@@ -16,7 +21,7 @@ export function useCharacter (characterId) {
 }
 
 export function useCharacterNamesMap () {
-  const { data: characters } = useCollection('characters', {where: ['userId', '==', hardCodedUserId]})
+  const { data: characters } = useCharacters()
   if (!characters) return []
 
   return charactersByNameSelector(characters)
