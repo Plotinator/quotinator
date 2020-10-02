@@ -25,7 +25,7 @@ export function makeUIconfig (isDev, params) {
 export function makeActionCodeSettings (isDev, params) {
   return {
     handleCodeInApp: true,
-    url: isDev ? `http://localhost:3000${params || ''}` : `https://quotinator.vercel.app/${params}`,
+    url: isDev ? `http://localhost:3000${params || ''}` : `https://quotinator.vercel.app/${params || ''}`,
   }
 }
 
