@@ -8,7 +8,6 @@ export function makeUIconfig (isDev, params) {
       {
         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
         signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-        forceSameDevice: true,
         emailLinkSignIn: function () {
           return makeActionCodeSettings(isDev, params)
         },

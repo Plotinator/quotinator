@@ -4,14 +4,14 @@ import { Modal, ModalTitle, ModalBody, ModalFooter, ModalHeader } from '../spect
 import Button from '../spectre/Button'
 import { Grid, Row, Column } from '../spectre/Grid'
 import { FormItem, FormLabel } from '../spectre/Form'
-import { useCollection } from '@nandorojo/swr-firestore'
 import { createQuote } from '../../store/create_functions'
 import AuthorsAutoComplete from '../authors/AuthorsAutoComplete'
 import WorksAutoComplete from '../works/WorksAutoComplete'
 import TopicsAutoComplete from '../topics/TopicsAutoComplete'
 import { useQuotes } from '../../hooks/quotes'
-import { useWork } from '../../hooks/works'
+import { useWork, useUpdateWork } from '../../hooks/works'
 import { useUser } from '../../hooks/user'
+import WorkTypesAutoComplete from '../workTypes/WorkTypesAutoComplete'
 
 export default function QuoteModal (props) {
   const { user } = useUser()
@@ -20,8 +20,10 @@ export default function QuoteModal (props) {
   const [showNotes, setShowNotes] = useState(false)
   const [authorId, setAuthorId] = useState(null)
   const [workId, setWorkId] = useState(null)
+  const [workIsNew, setWorkIsNew] = useState(false)
   const [topicIds, setTopicIds] = useState([])
   const work = useWork(workId)
+  const updateWork = useUpdateWork(workId)
   const { add } = useQuotes()
 
   const updateText = e => {
@@ -33,15 +35,26 @@ export default function QuoteModal (props) {
   }
 
   const chooseAuthor = (id) => {
+    // work was selected, but it has no author id
+    if (!authorId && work && updateWork) {
+      // work to use this authorId
+      updateWork({authorId: id})
+    }
     setAuthorId(id)
   }
 
   const chooseWork = (id, isNew) => {
     setWorkId(id)
+    setWorkIsNew(isNew)
   }
 
   const chooseTopic = (id) => {
     setTopicIds(uniq(topicIds.concat(id)))
+  }
+
+  const chooseType = (id) => {
+    // update work to use this workTypeId
+    if (updateWork) updateWork({workTypeId: id})
   }
 
   const removeTopic = (id) => {
@@ -60,6 +73,15 @@ export default function QuoteModal (props) {
     if (topicIds.length) quote.topicIds = topicIds
     add(createQuote(quote))
     props.onClose()
+  }
+
+  const renderWorkType = () => {
+    if (!work || !workIsNew) return null
+
+    return <FormItem>
+      <FormLabel>Type of work? <span className='text-gray'>(book, speech, movie, etc.)</span></FormLabel>
+      <WorkTypesAutoComplete chooseType={chooseType} selectedId={work?.workTypeId} />
+    </FormItem>
   }
 
   const renderNotes = () => {
@@ -86,9 +108,10 @@ export default function QuoteModal (props) {
           </Column>
           <Column size={6} className='col-xs-12'>
             <FormItem>
-              <FormLabel>Title of book <span className='text-gray'>(or speech, poem, etc.)</span></FormLabel>
+              <FormLabel>Title of book <span className='text-gray'>(or speech, movie, etc.)</span></FormLabel>
               <WorksAutoComplete chooseWork={chooseWork} currentWorkId={workId} authorId={authorId} />
             </FormItem>
+            { renderWorkType() }
           </Column>
         </Row>
         <Row gaps className='my-2'>

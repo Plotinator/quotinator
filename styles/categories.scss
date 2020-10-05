@@ -76,6 +76,7 @@
       &:hover {
         div {
           background-color: $blue-7;
+          box-shadow: inset -1px -1px 7px $blue-8;
         }
       }
       &.selected {

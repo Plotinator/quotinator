@@ -6,9 +6,11 @@ import { useUser } from '../hooks/user'
 import Login from './Login'
 
 export default function App (props) {
-  const { isSignedIn, user, logout } = useUser()
+  const { checking, isSignedIn, logout } = useUser()
 
-  if (!isSignedIn) return <Login />
+  if (checking) return <h1>Quotr</h1>
+
+  if (!checking && !isSignedIn) return <Login />
 
   return <RecoilRoot>
     <div className='main'>

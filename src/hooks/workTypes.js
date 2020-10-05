@@ -1,5 +1,5 @@
 import { useCollection } from '@nandorojo/swr-firestore'
-import { sortedWorkTypesSelector } from '../selectors/workTypes'
+import { sortedWorkTypesSelector, workTypesByIdSelector, workTypesByNameSelector } from '../selectors/workTypes'
 import { useUser } from './user'
 
 export function useWorkTypes () {
@@ -12,4 +12,16 @@ export function useSortedWorkTypes () {
   if (!data.data) return data
 
   return { ...data, sortedWorkTypes: sortedWorkTypesSelector(data.data)}
+}
+
+export function useWorkTypesById () {
+  const { data } = useWorkTypes()
+  return data ? workTypesByIdSelector(data) : null
+}
+
+export function useWorkTypeNamesMap () {
+  const { data } = useWorkTypes()
+  if (!data) return []
+
+  return workTypesByNameSelector(data)
 }

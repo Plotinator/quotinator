@@ -1,4 +1,4 @@
-import { useCollection } from '@nandorojo/swr-firestore'
+import { useCollection, useDocument } from '@nandorojo/swr-firestore'
 import { groupBy } from 'lodash'
 import { worksByIdSelector, worksByNameSelector, workIdsOfWorkTypeSelector } from '../selectors/works'
 import { useUser } from './user'
@@ -19,6 +19,11 @@ export function useWork (workId) {
   if (!data) return null
 
   return worksByIdSelector(data)[workId]
+}
+
+export function useUpdateWork (workId) {
+  const { update } = useDocument(workId ? `works/${workId}` : null)
+  return update
 }
 
 export function useWorkNamesMap () {
