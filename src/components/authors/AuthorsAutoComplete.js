@@ -51,8 +51,12 @@ export default function AuthorsAutoComplete (props) {
   }
 
   const createNewAuthor = (val) => {
-    const newId = setAuthor({name: val, userId: user?.uid})
-    props.chooseAuthor(newId)
+    if (authorsByName[val]) {
+      props.chooseAuthor(authorsByName[val].id)
+    } else {
+      const newId = setAuthor({name: val, userId: user?.uid})
+      props.chooseAuthor(newId)
+    }
     toggleShowCurrent(true)
     setSuggestions([])
   }

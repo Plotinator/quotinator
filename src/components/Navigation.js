@@ -10,14 +10,8 @@ export default function Navigation (props) {
   const [category, setCategory] = useRecoilState(selectedCategory)
   const [secondaryTab, setSecondaryTab] = useRecoilState(selectedSecondaryTab)
 
-  const { data, sortedWorkTypes, error, isValidating, loading } = useSortedWorkTypes()
-
   const renderCategoryChooser = () => {
-    let tabs = [...secondaryTabs]
-    if (data && sortedWorkTypes) {
-      tabs = [secondaryTabs[0], secondaryTabs[1], ...sortedWorkTypes, secondaryTabs[2]]
-    }
-    return tabs.map(t => <div key={t.id} className={cx('category', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
+    return secondaryTabs.map(t => <div key={t.id} className={cx('category', {selected: secondaryTab == t.id})} onClick={() => setSecondaryTab(t.id)}>{t.name}</div> )
   }
 
   const renderFilterChooser = () => {

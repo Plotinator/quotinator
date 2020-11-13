@@ -7,7 +7,7 @@ export const selectedTopicIds = atom({
 
 export const selectedCategory = atom({
   key: 'mainCategory',
-  default: 'favorites'
+  default: 'all'
 })
 
 export const selectedSecondaryTab = atom({

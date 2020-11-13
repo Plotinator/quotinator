@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { AutoComplete } from '../spectre/AutoComplete'
-import { setWorkType } from '../../store/create_functions'
 import { useUser } from '../../hooks/user'
 import { useSortedWorkTypes, useWorkTypesById, useWorkTypeNamesMap } from '../../hooks/workTypes'
 
@@ -58,10 +57,10 @@ export default function WorkTypesAutoComplete (props) {
   }
 
   const createNewWork = (val) => {
-    const newId = setWorkType({name: val, authorId: props.selectedId, userId: user?.uid})
-    props.chooseType(newId, true)
-    toggleShowSelected(true)
-    setSuggestions([])
+    // const newId = setWorkType({name: val, authorId: props.selectedId, userId: user?.uid})
+    // props.chooseType(newId, true)
+    // toggleShowSelected(true)
+    // setSuggestions([])
   }
 
   const resetType = () => {

@@ -4,9 +4,11 @@
 @import "card";
 @import "quotes";
 @import "works";
+@import "work_types";
 @import "authors";
 @import "forms";
 @import "firebase";
+@import "sales_page";
 
 @import "vars";
 @import "colors";
@@ -36,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: $gray-8;
+  background-color: $teal-8;
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
   h1 {
     margin-top: 10px;
@@ -48,7 +50,8 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background-color: $gray-7;
+    background-color: $teal-7;
+    color: $teal-0;
   }
 }
 
@@ -56,4 +59,17 @@ h1, h2, h3, h4, h5, h6 {
   font-size: calc(1.2rem + 0.75vw);
   line-height: calc(1.2rem + 0.75vw);
   font-family: 'Pacifico', cursive !important;
+}
+
+.splashscreen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $gray-9;
+
+  .quotrH1 {
+    font-size: calc(3rem + 1vw);
+  }
 }

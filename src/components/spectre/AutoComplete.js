@@ -10,7 +10,7 @@ export function AutoComplete (props) {
   useEffect(() => {
     if (wrapperRef?.current) {
       const rect = wrapperRef.current.getBoundingClientRect()
-      setCoords({x: rect.x, y: rect.y + 30, width: rect.width})
+      setCoords({x: rect.x, y: rect.y + rect.height - 2, width: rect.width})
     }
   }, [props.suggestions, showAll, props.allPossible])
 
@@ -22,11 +22,13 @@ export function AutoComplete (props) {
     if (e.which == 13) {
       if (inputRef.current.value == '') return
       props.addNew(inputRef.current.value)
+      inputRef.current.value = ''
     }
   }
 
   const chooseThing = (thing) => {
     inputRef.current.value = ''
+    inputRef.current.focus()
     props.chooseItem(thing)
   }
 
@@ -44,6 +46,9 @@ export function AutoComplete (props) {
     return <AutoCompleteMenu style={style}>{ menuItems }</AutoCompleteMenu>
   }
 
+  // TODO: onFocus show the list of choices
+  // That's easy, but hiding it at the right times is tough
+  // to show: onFocus={() => setShowAll(true)}
   const renderInput = () => {
     if (props.hideInput) return null
     return <div className='input-group'>

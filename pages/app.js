@@ -1,10 +1,10 @@
-import Head from 'next/head'
+import Head from "next/head"
 import 'firebase/firestore'
 import 'firebase/auth'
 import { Fuego, FuegoProvider } from '@nandorojo/swr-firestore'
-import SalesPage from '../src/components/SalesPage'
+import App from "../src/components/App"
 
-export default function Home(props) {
+export default function AppHome(props) {
   const fuego = new Fuego(props.firebaseConfig)
 
   return (
@@ -18,7 +18,7 @@ export default function Home(props) {
       </Head>
 
       <FuegoProvider fuego={fuego}>
-        <SalesPage />
+        <App isDev={props.isDev}/>
       </FuegoProvider>
     </div>
   )

@@ -1,0 +1,28 @@
+@import "vars";
+@import "colors";
+
+.work-type__chooser__grid {
+  margin-top: 16px;
+  h5 {
+    margin-bottom: 16px;
+  }
+}
+
+.work-type__button {
+  border: 1px solid $teal-5;
+  color: $teal-5;
+  padding: 24px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  span {
+    font-size: larger;
+  }
+
+  &:hover {
+    background-color: $teal-9;
+  }
+}

@@ -2,7 +2,8 @@
 
 .topicsSidebar {
   height: 100%;
-  background-color: $gray-8;
+  // background-color: $gray-8;
+  background-color: $teal-9;
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
 
   .topicsList {
@@ -13,16 +14,17 @@
     padding: 6px 8px;
     // font-size: 26px;
     font-size: calc(16px + 0.5vw);
+    color: $teal-1;
     cursor: pointer;
   }
   .topic:hover {
-    background-color: $gray-9;
+    background-color: $teal-7;
   }
   .topic.selected {
-    background-color: $gray-7;
+    background-color: $teal-6;
   }
   .topic.selected:hover {
-    background-color: $gray-6;
+    background-color: $teal-7;
   }
 }
 

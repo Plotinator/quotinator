@@ -20,7 +20,9 @@ export default function TopicsList (props) {
   const renderTopics = () => {
     return topics.map(t => {
       const selected = selectedIds.includes(t.id)
-      return <div key={t.id} className={cx('topic', { selected })} onClick={() => toggleSelected(t.id, selected)}>{t.name}</div>
+      let style = {}
+      if (t.color) style = {color: t.color}
+      return <div key={t.id} className={cx('topic', { selected })} style={style} onClick={() => toggleSelected(t.id, selected)}>{t.name}</div>
     })
   }
 

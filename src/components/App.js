@@ -4,11 +4,12 @@ import Navigation from './Navigation'
 import { RecoilRoot } from 'recoil'
 import { useUser } from '../hooks/user'
 import Login from './Login'
+import SplashScreen from './SplashScreen'
 
 export default function App (props) {
   const { checking, isSignedIn, logout } = useUser()
 
-  if (checking) return <h1>Quotr</h1>
+  if (checking) return <SplashScreen />
 
   if (!checking && !isSignedIn) return <Login />
 

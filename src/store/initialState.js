@@ -4,7 +4,6 @@
 // authors
 // topics
 // works
-// workTypes
 // users
 // characters
 
@@ -16,12 +15,12 @@ export const initialQuote = {
   workId: '',
   characterId: '',
   topicIds: [],
-  pageNumber: null, // ?
-  chapter: null,  // ?
-  verse: null,  // ?
   notes: '',
   dateAdded: 0,
   lastEdited: 0,
+  metadata: {
+
+  }
 }
 
 export const initialTopic = {
@@ -40,23 +39,13 @@ export const initialWork = {
   userId: '',
   name: '',
   authorId: '',
-  workTypeId: '',
+  workType: '',
 }
 
-export const initialWorkType = {
-  userId: '',
-  name: '',
-  position: 0,
-}
+export const workTypes = ['book', 'speech', 'event', 'scripture', 'movie', 'poem', 'other']
+export const WORKTYPES = { book: 'book', speech: 'speech', event: 'event', scripture: 'scripture', movie: 'movie', poem: 'poem', other: 'other' }
 
 export const initialCharacter = {
   userId: '',
   name: '',
-}
-
-export const initialUI = {
-  openCard: null,
-  darkMode: false,
-  selectedTopics: [],
-  selectedCategory: 0,
 }

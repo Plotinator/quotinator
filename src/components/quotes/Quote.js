@@ -52,6 +52,8 @@ export default function Quote (props) {
     } else return null
   }
 
+      // { renderCharacter() }
+      // { renderWork() }
   return <Card onClick={() => setOpenedQuote(quote.id)}>
     <CardBody>
       { renderStar() }
@@ -59,8 +61,6 @@ export default function Quote (props) {
     </CardBody>
     <CardFooter>
       { renderAuthor() }
-      { renderCharacter() }
-      { renderWork() }
       <TopicChipsList topicIds={quote.topicIds} />
     </CardFooter>
   </Card>

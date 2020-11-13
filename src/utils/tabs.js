@@ -7,6 +7,12 @@ export const mainTabs = [
 
 export const secondaryTabs = [
   {name: 'Quotes', id: 'all'},
-  {name: 'Author', id: 'authors'},
-  {name: 'Character', id: 'characters'}
+  {name: 'Authors', id: 'authors'},
+  {name: 'Books', id: 'books'},
+  {name: 'Speeches', id: 'speeches'},
+  {name: 'Events', id: 'events'},
+  {name: 'Scriptures', id: 'scriptures'},
+  {name: 'Movies/Shows', id: 'movies'},
+  {name: 'Poems', id: 'poems'},
+  {name: 'Characters', id: 'characters'}
 ]

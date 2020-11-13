@@ -3,7 +3,7 @@
 .categories-wrapper {
   display: flex;
   align-items: center;
-  background-color: $gray-7;
+  background-color: $teal-7;
 
   .category {
     @include header-font;
@@ -14,10 +14,11 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $gray-9;
+      background-color: $teal-9;
     }
     &.selected {
-      background-color: $gray-6;
+      background-color: $teal-5;
+      color: $teal-9;
     }
   }
 

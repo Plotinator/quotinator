@@ -59,8 +59,12 @@ export default function WorksAutoComplete (props) {
   }
 
   const createNewWork = (val) => {
-    const newId = setWork({name: val, authorId: props.authorId, userId: user?.uid})
-    props.chooseWork(newId, true)
+    if (worksByName[val]) {
+      props.chooseWork(worksByName[val].id)
+    } else {
+      const newId = setWork({name: val, authorId: props.authorId, userId: user?.uid})
+      props.chooseWork(newId, true)
+    }
     toggleShowCurrent(true)
     setSuggestions([])
   }

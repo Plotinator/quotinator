@@ -43,17 +43,23 @@ export default function TopicsAutoComplete (props) {
       return
     }
     props.chooseTopic(topic.id)
+    setSuggestions([])
   }
 
   const createNewTopic = (val) => {
-    const newId = setTopic({name: val, position: nextTopicPosition ?? 0, userId: user?.uid})
-    props.chooseTopic(newId)
+    if (topicsByName[val]) {
+      props.chooseTopic(topicsByName[val].id)
+    } else {
+      const newId = setTopic({name: val, position: nextTopicPosition ?? 0, userId: user?.uid})
+      props.chooseTopic(newId)
+    }
+    setSuggestions([])
   }
 
   const renderTopics = () => {
     if (topicsById && props.currentTopicIds?.length) {
       const chips = props.currentTopicIds.map(id => <TopicChip key={id} topic={topicsById[id]} onRemove={() => props.removeTopic(id)}/>)
-      return <div style={{flex: '1 0 auto'}}>
+      return <div>
         { chips }
       </div>
     } else return null

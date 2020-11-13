@@ -2,8 +2,8 @@
 
 .quote-modal {
   .modal-container {
-    height: 100vh;
-    max-height: 100vh;
+    height: 90vh;
+    max-height: 90vh;
     padding: 0;
     // margin-bottom: calc(100vh / 4);
     display: grid;
@@ -15,6 +15,14 @@
   .modal-header {
     grid-area: header;
     padding: 0.8rem 1.6rem;
+    background-color: $blue-6;
+    color: white;
+    .btn-clear {
+      font-weight: bold;
+    }
+  }
+  .modal-title {
+    font-weight: bold;
   }
   .modal-body {
     grid-area: main;
@@ -34,7 +42,7 @@
   }
 
   .quote-footer {
-    background-color: $gray-alt-9;
+    background-color: $gray-9;
   }
 }
 

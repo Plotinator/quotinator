@@ -2,7 +2,7 @@ import React from 'react'
 import cx from 'classnames'
 
 export function Grid (props) {
-  return <div className={cx('container', props.className)}>{ props.children }</div>
+  return <div className={cx('container', props.className)} style={props.style}>{ props.children }</div>
 }
 
 export function Row (props) {

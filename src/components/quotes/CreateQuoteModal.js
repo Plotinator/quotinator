@@ -12,12 +12,15 @@ import { useQuotes } from '../../hooks/quotes'
 import { useWork, useUpdateWork } from '../../hooks/works'
 import { useUser } from '../../hooks/user'
 import WorkTypesAutoComplete from '../workTypes/WorkTypesAutoComplete'
+import WorkTypeButton from '../workTypes/WorkTypeButton'
+import { WORKTYPES, workTypes } from '../../store/initialState'
 
 export default function QuoteModal (props) {
   const { user } = useUser()
   const [text, setText] = useState('')
   const [notes, setNotes] = useState('')
   const [showNotes, setShowNotes] = useState(false)
+  const [workType, setWorkType] = useState(null)
   const [authorId, setAuthorId] = useState(null)
   const [workId, setWorkId] = useState(null)
   const [workIsNew, setWorkIsNew] = useState(false)
@@ -75,15 +78,6 @@ export default function QuoteModal (props) {
     props.onClose()
   }
 
-  const renderWorkType = () => {
-    if (!work || !workIsNew) return null
-
-    return <FormItem>
-      <FormLabel>Type of work? <span className='text-gray'>(book, speech, movie, etc.)</span></FormLabel>
-      <WorkTypesAutoComplete chooseType={chooseType} selectedId={work?.workTypeId} />
-    </FormItem>
-  }
-
   const renderNotes = () => {
     if (!showNotes) return <a style={{cursor: 'pointer'}} onClick={() => setShowNotes(true)}>Add Notes?</a>
 
@@ -92,37 +86,79 @@ export default function QuoteModal (props) {
     </FormItem>
   }
 
+  const renderWorkTypeChooser = () => {
+    return <Grid className='work-type__chooser__grid'>
+      <h5>Where did this quote come from?</h5>
+      <Row gaps>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.book)}>Book</WorkTypeButton>
+        </Column>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.speech)}>Speech</WorkTypeButton>
+        </Column>
+      </Row>
+      <Row gaps>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.event)}>Event</WorkTypeButton>
+        </Column>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.movie)}>Movie / Show</WorkTypeButton>
+        </Column>
+      </Row>
+      <Row gaps>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.scripture)}>Scripture</WorkTypeButton>
+        </Column>
+        <Column size={6}>
+          <WorkTypeButton onClick={() => setWorkType(WORKTYPES.poem)}>Poem</WorkTypeButton>
+        </Column>
+      </Row>
+    </Grid>
+  }
+
+  const renderWorkDetails = () => {
+    if (workType == WORKTYPES.event) {
+
+    }
+    if (workType == WORKTYPES.poem) {
+
+    }
+    if (workType == WORKTYPES.scripture) {
+
+    }
+    return <Grid>
+      <Row gaps className='my-2'>
+        <Column size={6} className='col-xs-12'>
+          <FormItem>
+            <FormLabel htmlFor='author-name'>By who?</FormLabel>
+            <AuthorsAutoComplete chooseAuthor={chooseAuthor} currentAuthorId={authorId || work?.authorId} />
+          </FormItem>
+        </Column>
+        <Column size={6} className='col-xs-12'>
+          <FormItem>
+            <FormLabel>Title of {workType}</FormLabel>
+            <WorksAutoComplete chooseWork={chooseWork} currentWorkId={workId} authorId={authorId} />
+          </FormItem>
+        </Column>
+      </Row>
+      <Row gaps className='my-2'>
+        <Column size={12}>
+          <FormItem>
+            <FormLabel>Topics</FormLabel>
+            <TopicsAutoComplete chooseTopic={chooseTopic} currentTopicIds={topicIds} removeTopic={removeTopic}/>
+          </FormItem>
+        </Column>
+      </Row>
+    </Grid>
+  }
+
   const renderForm = () => {
     return <div>
       <FormItem>
         <textarea className='form-input quote-input' value={text} onChange={updateText} autoFocus placeholder='Write that quote' rows={5}></textarea>
       </FormItem>
       { renderNotes() }
-      <Grid>
-        <Row gaps className='my-2'>
-          <Column size={6} className='col-xs-12'>
-            <FormItem>
-              <FormLabel htmlFor='author-name'>By who?</FormLabel>
-              <AuthorsAutoComplete chooseAuthor={chooseAuthor} currentAuthorId={authorId || work?.authorId} />
-            </FormItem>
-          </Column>
-          <Column size={6} className='col-xs-12'>
-            <FormItem>
-              <FormLabel>Title of book <span className='text-gray'>(or speech, movie, etc.)</span></FormLabel>
-              <WorksAutoComplete chooseWork={chooseWork} currentWorkId={workId} authorId={authorId} />
-            </FormItem>
-            { renderWorkType() }
-          </Column>
-        </Row>
-        <Row gaps className='my-2'>
-          <Column size={12}>
-            <FormItem>
-              <FormLabel>Topics</FormLabel>
-              <TopicsAutoComplete chooseTopic={chooseTopic} currentTopicIds={topicIds} removeTopic={removeTopic}/>
-            </FormItem>
-          </Column>
-        </Row>
-      </Grid>
+      { workType ? renderWorkDetails() : renderWorkTypeChooser() }
     </div>
   }
 

@@ -1,4 +1,4 @@
-import { initialAuthor, initialTopic, initialQuote, initialWork, initialWorkType } from './initialState'
+import { initialAuthor, initialTopic, initialQuote, initialWork } from './initialState'
 import { set, revalidateCollection } from '@nandorojo/swr-firestore'
 import { newId } from './ids'
 
@@ -41,17 +41,5 @@ export function setWork (vals) {
   const id = newId()
   set(`works/${id}`, createWork(vals))
   revalidateCollection('works')
-  return id
-}
-
-// -----------------  Work Types  ------------------ //
-export function createWorkType (vals) {
-  return Object.assign({}, initialWorkType, vals)
-}
-
-export function setWorkType (vals) {
-  const id = newId()
-  set(`workTypes/${id}`, createWorkType(vals))
-  revalidateCollection('workTypes')
   return id
 }
