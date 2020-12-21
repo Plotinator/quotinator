@@ -28,6 +28,11 @@
     grid-area: main;
     overflow: auto;
     padding: 0.8rem 1.6rem;
+
+    .work-type {
+      text-transform: capitalize;
+      margin-bottom: 0;
+    }
   }
   .modal-footer {
     grid-area: footer;
