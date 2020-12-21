@@ -7,7 +7,7 @@ import { useUser } from '../../hooks/user'
 export default function WorksAutoComplete (props) {
   const { user } = useUser()
   const { data: allWorks } = useWorks()
-  const [filteredWorks, setFilteredWorks] = useState(props.authorId && allWorks ? allWorks.filter(w => w.authorId == props.authorId) : allWorks)
+  const [filteredWorks, setFilteredWorks] = useState(allWorks)
   const worksById = useWorksById()
   const worksByName = useWorkNamesMap()
   const workNames = Object.keys(worksByName)
@@ -15,10 +15,20 @@ export default function WorksAutoComplete (props) {
   const [showCurrentWork, toggleShowCurrent] = useState(true)
 
   useEffect(() => {
-    if (props.authorId && allWorks) {
-      setFilteredWorks(allWorks.filter(w => w.authorId == props.authorId))
+    if (allWorks && (props.authorId || props.workType)) {
+      setFilteredWorks(allWorks.filter(w => {
+        let allow = false
+        if (props.authorId) {
+          allow = w.authorId == props.authorId
+        }
+        if (props.workType) {
+          allow = allow && w.workType == props.workType // && here because workType must match
+        }
+        return allow
+      }))
+      console.groupEnd()
     }
-  }, [allWorks, props.authorId])
+  }, [allWorks, props.authorId, props.workType])
 
   const suggestWorks = e => {
     const term = e.target.value
