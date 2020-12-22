@@ -17,6 +17,15 @@ export function CardBody (props) {
   </div>
 }
 
+export function CardHeader ({ children, title, subtitle, star }) {
+  return <div className='card-header'>
+    { star ? star : null }
+    {title ? <div class="card-title h5">{title}</div> : null}
+    {subtitle ? <div class="card-subtitle text-gray">{subtitle}</div> : null}
+    { children }
+  </div>
+}
+
 export function CardFooter (props) {
   return <div className='card-footer'>
     { props.children }

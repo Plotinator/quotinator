@@ -11,7 +11,7 @@ import { useAuthor } from '../../hooks/authors'
 import { useTopicsById } from '../../hooks/topics'
 import { useWork } from '../../hooks/works'
 import { useCharacter } from '../../hooks/characters'
-import { Card, CardBody, CardFooter } from '../cards/Card'
+import { Card, CardBody, CardFooter, CardHeader } from '../cards/Card'
 import TopicChipsList from '../topics/TopicChipsList'
 
 export default function Quote (props) {
@@ -55,13 +55,12 @@ export default function Quote (props) {
       // { renderCharacter() }
       // { renderWork() }
   return <Card onClick={() => setOpenedQuote(quote.id)}>
+    <CardHeader title={author?.name} subtitle={work?.name} star={renderStar()} />
     <CardBody>
-      { renderStar() }
       <q>{quote.text}</q>
     </CardBody>
-    <CardFooter>
-      { renderAuthor() }
+    {quote.topicIds.length ? <CardFooter>
       <TopicChipsList topicIds={quote.topicIds} />
-    </CardFooter>
+    </CardFooter> : null}
   </Card>
 }

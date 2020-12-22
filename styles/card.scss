@@ -15,42 +15,49 @@
   height: 250px;
   // width: 350px;
   margin: 10px;
+  padding-bottom: 0.8rem;
   box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
   overflow: hidden;
   cursor: pointer;
 
-  &.work {
-    height: 300px;
-    transition: all $cubic;
+  // &.work {
+  //   height: 300px;
+  //   transition: all $cubic;
 
-    &:hover {
-      background-color: $gray-9;
-      box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+  //   &:hover {
+  //     background-color: $gray-9;
+  //     box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+  //   }
+  // }
+
+  // &.author {
+  //   height: 200px;
+  //   transition: all $cubic;
+
+  //   &:hover {
+  //     background-color: $gray-9;
+  //     box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+  //   }
+  // }
+
+
+  &:hover {
+    .card-footer {
+      display: block;
     }
   }
 
-  &.author {
-    height: 200px;
-    transition: all $cubic;
-
-    &:hover {
-      background-color: $gray-9;
-      box-shadow: inset 4px 4px 4px white, 0 0.25rem 1rem rgba(48,55,66,.15);
+  .card-header {
+    .card-title.h5 {
+      font-size: 0.8rem;
     }
-  }
 
-  .card-body {
-    // min-height: 150px;
-    // max-height: 300px;
-    overflow-y: auto;
+    .card-subtitle {
+      font-size: 0.6rem;
+    }
+
     .favorite-star {
-      float: left;
-      position: sticky;
-      top: 0;
-      shape-outside: circle(40%);
-      background-color: white;
-      margin-right: 25px;
-      margin-bottom: 5px;
+      float: right;
       height: 1.3em;
       width: 1.3em;
       color: $gray-4;
@@ -76,8 +83,20 @@
     }
   }
 
+  .card-body {
+    // min-height: 150px;
+    // max-height: 300px;
+    overflow-y: auto;
+  }
+
   .card-footer {
-    background-color: $gray-9;
+    display: none;
+    // background-color: $gray-9;
+    padding: 0.4rem;
+    margin-bottom: -0.8rem;
+    &:last-child {
+      padding-bottom: 0.4rem;
+    }
     .quote-author {
       @include header-font;
       text-align: right;
