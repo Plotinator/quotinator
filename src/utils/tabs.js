@@ -8,11 +8,11 @@ export const mainTabs = [
 export const secondaryTabs = [
   {name: 'Quotes', id: 'all'},
   {name: 'Authors', id: 'authors'},
-  {name: 'Books', id: 'books'},
-  {name: 'Speeches', id: 'speeches'},
-  {name: 'Events', id: 'events'},
-  {name: 'Scriptures', id: 'scriptures'},
-  {name: 'Movies/Shows', id: 'movies'},
-  {name: 'Poems', id: 'poems'},
-  {name: 'Characters', id: 'characters'}
+  {name: 'Books', id: 'book'},
+  {name: 'Speeches', id: 'speech'},
+  {name: 'Events', id: 'event'},
+  {name: 'Scriptures', id: 'scripture'},
+  {name: 'Movies/Shows', id: 'movie'},
+  {name: 'Poems', id: 'poem'},
 ]
+// {name: 'Characters', id: 'characters'}

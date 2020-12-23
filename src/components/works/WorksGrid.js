@@ -12,7 +12,9 @@ export default function WorksGrid (props) {
   const secondaryTab = useRecoilValue(selectedSecondaryTab)
   const works = useWorkIdsOfWorkType(secondaryTab)
   const [showDetailsId, setShowDetails] = useState(null)
-  const groupedQuotes = useFilterAndGroupQuotes(quotes, 'workId')
+  const groupedQuotes = useFilterAndGroupQuotes(quotes, 'workType')
+
+  console.log('WorksGrid', secondaryTab, works, groupedQuotes)
 
   const showDetails = (id) => setShowDetails(id)
 

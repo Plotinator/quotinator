@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 import { keyBy, groupBy } from 'lodash'
 
 const selectAllWorks = data => data
-const workTypeId = (data, workTypeId) => workTypeId
+const workType = (data, workType) => workType
 
 export const worksByIdSelector = createSelector(
   selectAllWorks,
@@ -16,11 +16,11 @@ export const worksByNameSelector = createSelector(
 
 export const worksGroupedByWorkTypeSelector = createSelector(
   selectAllWorks,
-  (works) => groupBy(works, 'workTypeId')
+  (works) => groupBy(works, 'workType')
 )
 
 export const workIdsOfWorkTypeSelector = createSelector(
   worksGroupedByWorkTypeSelector,
-  workTypeId,
-  (worksByType, workTypeId) => worksByType[workTypeId]
+  workType,
+  (worksByType, workType) => worksByType[workType]
 )
