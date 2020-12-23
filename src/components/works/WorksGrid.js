@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedSecondaryTab } from '../../recoil/atoms'
 import CardGrid from '../cards/CardGrid'
@@ -13,8 +13,9 @@ export default function WorksGrid (props) {
   const works = useWorkIdsOfWorkType(secondaryTab)
   const [showDetailsId, setShowDetails] = useState(null)
   const groupedQuotes = useFilterAndGroupQuotes(quotes, 'workType')
-
-  console.log('WorksGrid', secondaryTab, works, groupedQuotes)
+  useEffect(() => {
+    setShowDetails(null)
+  }, [secondaryTab])
 
   const showDetails = (id) => setShowDetails(id)
 

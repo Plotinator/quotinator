@@ -37,7 +37,5 @@ export function useWorkIdsOfWorkType (workType) {
   const { data } = useWorks()
   if (!data) return []
 
-  console.log('useWorkIdsOfWorkType', data, workType)
-
   return workIdsOfWorkTypeSelector(data, workType)
 }

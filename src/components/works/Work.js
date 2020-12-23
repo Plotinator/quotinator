@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import cx from 'classnames'
 import { useAuthor } from '../../hooks/authors'
-import { useWork } from '../../hooks/works'
-import { Card, CardBody, CardFooter } from '../cards/Card'
+import { Card, CardBody } from '../cards/Card'
 
-export default function Work (props) {
-  const { work } = props
+export default function Work ({ work, showDetails }) {
   const author = useAuthor(work?.authorId)
 
   const renderAuthor = () => {
@@ -23,7 +21,7 @@ export default function Work (props) {
     } else return null
   }
 
-  return <Card work onClick={() => props.showDetails(work.id)}>
+  return <Card work onClick={() => showDetails(work.id)}>
     <CardBody>
       <div className='work__body'>
         { renderWork() }
