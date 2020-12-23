@@ -6,8 +6,6 @@ import { IoMdPerson } from 'react-icons/io'
 export default function Author (props) {
   const { author } = props
 
-  console.log('AUTHOR', author)
-
   const renderName = () => {
     if (author) {
       return <h1>{author.name}</h1>

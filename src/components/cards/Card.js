@@ -20,8 +20,8 @@ export function CardBody (props) {
 export function CardHeader ({ children, title, subtitle, star }) {
   return <div className='card-header'>
     { star ? star : null }
-    {title ? <div class="card-title h5">{title}</div> : null}
-    {subtitle ? <div class="card-subtitle text-gray">{subtitle}</div> : null}
+    {title ? <div className="card-title h5">{title}</div> : null}
+    {subtitle ? <div className="card-subtitle text-gray">{subtitle}</div> : null}
     { children }
   </div>
 }

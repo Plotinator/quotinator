@@ -72,7 +72,7 @@ export default function WorksAutoComplete (props) {
     if (worksByName[val]) {
       props.chooseWork(worksByName[val].id)
     } else {
-      const newId = setWork({name: val, authorId: props.authorId, userId: user?.uid})
+      const newId = setWork({name: val, authorId: props.authorId, userId: user?.uid, workType: props.workType})
       props.chooseWork(newId, true)
     }
     toggleShowCurrent(true)

@@ -42,6 +42,14 @@ export const initialWork = {
   workType: '',
 }
 
+// an event is a work of workType 'event' with workIds
+export const initialEvent = {
+  userId: '',
+  name: '',
+  workType: 'event',
+  workIds: [],
+}
+
 export const workTypes = ['book', 'speech', 'event', 'scripture', 'movie', 'poem', 'other']
 export const WORKTYPES = { book: 'book', speech: 'speech', event: 'event', scripture: 'scripture', movie: 'movie', poem: 'poem', other: 'other' }
 
